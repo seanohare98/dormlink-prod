@@ -49,7 +49,6 @@ module.exports = env => {
         }
       ]
     },
-
     devServer: {
       contentBase: DIST_PATH,
       host: 'localhost',
@@ -64,6 +63,7 @@ module.exports = env => {
         warnings: true
       }
     },
+
     plugins: [
       new HtmlWebpackPlugin({
         template: path.join(__dirname, 'public/index.html'),
