@@ -1,7 +1,7 @@
 {
   "name": "dormlink",
   "version": "1.0.0",
-  "description": "Social Networking App",
+  "description": "A social network for university students to find roommates",
   "scripts": {
     "build": "webpack --env.environment=production --config webpack.config.js",
     "start": "npm run build && node src/server/server.js",
@@ -41,6 +41,7 @@
     "@material-ui/core": "^4.9.7",
     "@material-ui/icons": "^4.9.1",
     "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
     "core-js": "^3.6.4",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -50,10 +51,8 @@
     "mysql": "^2.18.1",
     "passport": "^0.4.1",
     "passport-azure-ad": "^4.2.1",
-    "passport-azure-ad-oauth2": "0.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.1.2",
-    "typeface-roboto": "0.0.75"
+    "react-router-dom": "^5.1.2"
   }
 }

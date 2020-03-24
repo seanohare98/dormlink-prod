@@ -3,7 +3,7 @@ const { OIDCStrategy } = require('passport-azure-ad');
 const jwt = require('jsonwebtoken');
 
 passport.initialize();
-passport.session();
+
 passport.use(
   new OIDCStrategy(
     {
@@ -15,10 +15,15 @@ passport.use(
       responseType: process.env.RESPONSE_TYPE,
       responseMode: process.env.RESPONSE_MODE,
       passReqToCallback: false,
-      allowHttpForRedirectUrl: true
+      validateIssuer: false,
+      allowHttpForRedirectUrl: true,
+      useCookieInsteadOfSession: true,
+      cookieEncryptionKeys: [
+        { key: '12345678901234567890123456789012', iv: '123456789012' }
+      ]
     },
-    (iss, profile, done) => {
-      console.log(profile, 'verification called');
+    (iss, sub, profile, accessToken, refreshToken, done) => {
+      console.log(profile);
 
       return done(null, profile);
     }
