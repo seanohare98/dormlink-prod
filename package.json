@@ -4,9 +4,9 @@
   "description": "Social Networking App",
   "scripts": {
     "build": "webpack --env.environment=production --config webpack.config.js",
-    "start": "npm run build && node src/server/app.js",
+    "start": "npm run build && node src/server/server.js",
     "client": "webpack-dev-server --env.environment=development --config webpack.config.js --devtool inline-source-map --hot",
-    "server": "nodemon src/server/app.js",
+    "server": "nodemon src/server/server.js",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "devDependencies": {
@@ -28,7 +28,9 @@
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^3.2.0",
     "nodemon": "^2.0.2",
+    "node-sass": "^4.13.1",
     "prettier": "1.19.1",
+    "sass-loader": "^8.0.2",
     "style-loader": "^1.1.3",
     "url-loader": "^4.0.0",
     "webpack": "^4.42.0",
@@ -43,10 +45,15 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-session": "^1.17.0",
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
+    "passport": "^0.4.1",
+    "passport-azure-ad": "^4.2.1",
+    "passport-azure-ad-oauth2": "0.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.1.2"
+    "react-router-dom": "^5.1.2",
+    "typeface-roboto": "0.0.75"
   }
 }

@@ -2,23 +2,25 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const SOURCE_PATH = path.join(__dirname, './src/client');
-const DIST_PATH = path.join(__dirname, './dist');
+const SOURCE_PATH = path.join(__dirname, 'src/client');
+const DIST_PATH = path.join(__dirname, 'dist');
 
 module.exports = env => {
   const { environment } = env;
 
   return {
     mode: environment,
-    entry: [path.join(SOURCE_PATH, './index.js')],
+    devtool: 'source-map',
+    entry: path.join(SOURCE_PATH, '/index.js'),
     output: {
       path: DIST_PATH,
-      filename: 'js/[name].[hash].js'
+      filename: 'js/[name].[hash].js',
+      publicPath: '/'
     },
     module: {
       rules: [
         {
-          test: /\.js$/,
+          test: /\.(js|jsx)$/,
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
@@ -40,12 +42,16 @@ module.exports = env => {
           }
         },
         {
-          test: /\.css$/,
-          use: ['style-loader', 'css-loader']
+          test: /\.s?css$/,
+          use: ['style-loader', 'css-loader', 'sass-loader']
         },
         {
-          test: /\.(png|gif|svg)$/,
-          loader: 'url-loader?limit=100000'
+          test: /\.(png|jpe?g|gif|svg)$/i,
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'images/'
+          }
         }
       ]
     },
@@ -66,8 +72,8 @@ module.exports = env => {
 
     plugins: [
       new HtmlWebpackPlugin({
-        template: path.join(__dirname, 'public/index.html'),
-        favicon: path.join(__dirname, 'public/favicon.ico')
+        template: path.join(__dirname, '/public/index.html'),
+        favicon: path.join(__dirname, '/public/favicon.ico')
       }),
       new CleanWebpackPlugin()
     ]
