@@ -21,6 +21,7 @@ router.post(
   }),
   function(req, res) {
     console.log('OAuth Authorized!!!');
+    console.log(req.user);
     res.redirect('http://localhost:3000');
   }
 );

@@ -23,9 +23,11 @@ passport.use(
       ]
     },
     (iss, sub, profile, accessToken, refreshToken, done) => {
-      console.log(profile);
+      console.log('PROFILE_OFFICE_ID: ', profile._json.oid);
+      console.log('EMAIL ADDRESS: :', profile._json.preferred_username);
+      console.log('REFRESHTOKEN:', refreshToken);
 
-      return done(null, profile);
+      return done(null, profile._json.preferred_username);
     }
   )
 );
