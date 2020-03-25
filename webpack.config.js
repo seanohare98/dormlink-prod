@@ -46,8 +46,16 @@ module.exports = env => {
           use: ['style-loader', 'css-loader', 'sass-loader']
         },
         {
-          test: /\.(png|jpe?g|gif|svg)$/i,
+          test: /\.(png|jpe?g|gif)$/i,
           loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'images/'
+          }
+        },
+        {
+          test: /\.svg$/,
+          loader: '@svgr/webpack',
           options: {
             name: '[name].[ext]',
             outputPath: 'images/'
@@ -62,7 +70,9 @@ module.exports = env => {
       historyApiFallback: true,
       open: true,
       proxy: {
-        '/api': 'http://localhost:8080'
+        '*': 'http://[::1]:8080',
+        secure: false,
+        changeOrigin: true
       },
       overlay: {
         errors: true,

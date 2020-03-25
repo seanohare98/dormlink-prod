@@ -1,7 +1,56 @@
 // import typeface 'Roboto' from Google CDN
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 
-.test {
-  background: url('../../public/example.png');
-  height: 500px;
+#home-container {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 1fr 0.5fr; /* for left and right sections */
+  grid-gap: 10px;
+  grid-template-areas: '. left right .';
+  height: 100%;
+}
+
+#inner {
+  grid-area: left;
+  align-self: center;
+  justify-self: center;
+}
+
+#illustration {
+  grid-area: right;
+  align-self: center;
+  justify-self: center;
+  width: 80%;
+  padding: 20%;
+}
+
+img#logo {
+  width: 20em;
+}
+
+h1 {
+  text-transform: uppercase;
+  color: #535353;
+  margin-bottom: 0.2em;
+}
+
+p.subtitle {
+  font-size: 1.4em;
+  color: #858585;
+  margin-top: 0;
+}
+
+#sign-in {
+  animation: sign-inIn 1s ease-in-out forwards; /* assign animation to monitor with 'monitorIn' as keyframe name */
+  opacity: 0;
+}
+
+@keyframes sign-inIn {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

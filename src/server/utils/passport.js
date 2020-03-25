@@ -25,8 +25,8 @@ passport.use(
     (iss, sub, profile, accessToken, refreshToken, done) => {
       console.log('PROFILE_OFFICE_ID: ', profile._json.oid);
       console.log('EMAIL ADDRESS: :', profile._json.preferred_username);
-      console.log('REFRESHTOKEN:', refreshToken);
-
+      console.log('REFRESHTOKEN: ', refreshToken);
+      console.log('ACCESSTOKEN: ', accessToken);
       return done(null, profile._json.preferred_username);
     }
   )
@@ -34,10 +34,10 @@ passport.use(
 
 passport.serializeUser((user, callback) => {
   console.log('serializing user.');
-  callback(null, user.id);
+  callback(null, user);
 });
 
 passport.deserializeUser((user, callback) => {
   console.log('deserialize user.');
-  callback(null, user.id);
+  callback(null, user);
 });
