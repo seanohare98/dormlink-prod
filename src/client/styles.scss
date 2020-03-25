@@ -1,6 +1,10 @@
 // import typeface 'Roboto' from Google CDN
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 
+:root {
+  background-color: #cccccc;
+}
+
 #home-container {
   display: grid;
   grid-template-columns: 0.5fr 1fr 1fr 0.5fr; /* for left and right sections */
@@ -27,7 +31,8 @@ img#logo {
   width: 20em;
 }
 
-h1 {
+.landing-header {
+  margin-top: 0;
   text-transform: uppercase;
   color: #535353;
   margin-bottom: 0.2em;
@@ -37,6 +42,7 @@ p.subtitle {
   font-size: 1.4em;
   color: #858585;
   margin-top: 0;
+  margin-bottom: 0;
 }
 
 #sign-in {

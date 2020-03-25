@@ -9,7 +9,7 @@ import UserProvider from './contexts/UserProvider';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      light: 'cccccc',
+      light: '#cccccc',
       main: '#67c97a'
     }
   }

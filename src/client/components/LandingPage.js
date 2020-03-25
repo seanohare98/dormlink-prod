@@ -21,9 +21,9 @@ const LandingPage = () => {
       <div id='home-container'>
         <div id='inner'>
           <img src={Logo} alt='dormlink-logo img' id='logo' />
-          <h1>Find Your Roommate!</h1>
+          <h1 className='landing-header'>Find Your Roommate!</h1>
           <p className='subtitle'>
-            A social network built by students, for students
+            A social network made by students, for students
           </p>
           <LoginButton />
         </div>
