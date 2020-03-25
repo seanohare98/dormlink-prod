@@ -6,7 +6,7 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    fetch('/user')
+    fetch('http://localhost:8080/user')
       .then(res => res.json())
       .then(res => setUser(res))
       .catch(err => {

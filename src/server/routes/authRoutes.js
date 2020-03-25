@@ -4,11 +4,10 @@ const passport = require('passport');
 router.get(
   '/azure',
   passport.authenticate('azuread-openidconnect', {
-    session: false,
-    failureRedirect: '/sucks'
+    failureRedirect: '/failure'
   }),
-  function(req, res) {
-    console.log('Oauth Called!!!');
+  (req, res) => {
+    console.log('Testing Route 1!!!');
     res.redirect('/');
   }
 );
@@ -16,18 +15,15 @@ router.get(
 router.post(
   '/azure/redirect',
   passport.authenticate('azuread-openidconnect', {
-    session: false,
     failureRedirect: '/failure'
   }),
-  function(req, res) {
-    console.log('OAuth Authorized!!!');
-    console.log(req.user);
-    // res.redirect('/');
-    res.redirect('http://localhost:3000');
+  (req, res) => {
+    console.log('OAuth Sucess!!!');
+    res.redirect('/');
   }
 );
 
-router.get('/logout', function(req, res) {
+router.get('/logout', (req, res) => {
   req.logout();
   console.log('Logged Out!!!');
   res.redirect('/');

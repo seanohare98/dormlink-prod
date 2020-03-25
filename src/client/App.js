@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import LandingPage from './components/LandingPage';
 import NavBar from './components/NavBar';
-import Profile from './components/Profile';
 import UserProvider from './contexts/UserProvider';
 
 const theme = createMuiTheme({
@@ -21,9 +20,8 @@ export default function App() {
       <Router>
         <UserProvider>
           <Route path='/' component={NavBar} />
-          <Route path='/profile' component={Profile} />
+          <Route path='/' exact component={LandingPage} />
         </UserProvider>
-        <Route path='/' exact component={LandingPage} />
       </Router>
     </MuiThemeProvider>
   );

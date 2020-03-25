@@ -2,8 +2,6 @@ const passport = require('passport');
 const { OIDCStrategy } = require('passport-azure-ad');
 const jwt = require('jsonwebtoken');
 
-passport.initialize();
-
 passport.use(
   new OIDCStrategy(
     {
@@ -25,19 +23,27 @@ passport.use(
     (iss, sub, profile, accessToken, refreshToken, done) => {
       console.log('PROFILE_OFFICE_ID: ', profile._json.oid);
       console.log('EMAIL ADDRESS: :', profile._json.preferred_username);
-      console.log('REFRESHTOKEN: ', refreshToken);
-      console.log('ACCESSTOKEN: ', accessToken);
+      // find user data in database
+      const validEmail =
+        profile &&
+        profile._json &&
+        profile._json.preferred_username.match(
+          /^[A-Za-z0-9._%+-]+@link.cuhk.edu.hk$/
+        );
+      if (!validEmail) {
+        console.log('Not a CUHK email address...');
+      }
       return done(null, profile._json.preferred_username);
     }
   )
 );
 
 passport.serializeUser((user, callback) => {
-  console.log('serializing user.');
+  console.log('Serializing User....');
   callback(null, user);
 });
 
 passport.deserializeUser((user, callback) => {
-  console.log('deserialize user.');
+  console.log('Deserializing User...');
   callback(null, user);
 });

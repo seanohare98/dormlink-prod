@@ -10,7 +10,7 @@ module.exports = env => {
 
   return {
     mode: environment,
-    devtool: 'source-map',
+    // devtool: 'source-map',
     entry: path.join(SOURCE_PATH, '/index.js'),
     output: {
       path: DIST_PATH,
@@ -69,11 +69,11 @@ module.exports = env => {
       port: 3000,
       historyApiFallback: true,
       open: true,
-      proxy: {
-        '*': 'http://[::1]:8080',
-        secure: false,
-        changeOrigin: true
-      },
+      // proxy: {
+      //   '*': 'http://[::1]:8080',
+      //   secure: false,
+      //   changeOrigin: true
+      // },
       overlay: {
         errors: true,
         warnings: true
