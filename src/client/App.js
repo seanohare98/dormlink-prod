@@ -1,9 +1,12 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Router, Route } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import LandingPage from './components/LandingPage';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import history from './contexts/history';
+import { UserContext } from './contexts/UserProvider';
+import PrivateRoute from './components/PrivateRoute';
 import NavBar from './components/NavBar';
-import UserProvider from './contexts/UserProvider';
+import Profile from './components/Profile';
 
 const theme = createMuiTheme({
   palette: {
@@ -15,13 +18,15 @@ const theme = createMuiTheme({
 });
 
 export default function App() {
-  return (
+  const [getUser, setUser] = useContext(UserContext);
+
+  return getUser.loading && true ? (
+    <CircularProgress />
+  ) : (
     <MuiThemeProvider theme={theme}>
-      <Router>
-        <UserProvider>
-          <Route path='/' component={NavBar} />
-          <Route path='/' exact component={LandingPage} />
-        </UserProvider>
+      <Router history={history}>
+        <Route path='/' component={NavBar} />
+        <PrivateRoute path='/' component={Profile} />
       </Router>
     </MuiThemeProvider>
   );

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -14,7 +14,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import UserProvider from '../contexts/UserProvider';
+import { UserContext } from '../contexts/UserProvider';
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -84,7 +84,7 @@ export default function NavBar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const userData = useContext(UserProvider.context);
+  const [userData, setUserData] = useContext(UserContext);
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 

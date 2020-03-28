@@ -4,29 +4,30 @@ const passport = require('passport');
 router.get(
   '/azure',
   passport.authenticate('azuread-openidconnect', {
-    failureRedirect: '/failure'
-  }),
-  (req, res) => {
-    console.log('Testing Route 1!!!');
-    res.redirect('/');
-  }
+    successRedirect: '/',
+    failureRedirect: '/error'
+  })
 );
 
 router.post(
   '/azure/redirect',
   passport.authenticate('azuread-openidconnect', {
-    failureRedirect: '/failure'
+    failureRedirect: '/error'
   }),
   (req, res) => {
-    console.log('OAuth Sucess!!!');
-    res.redirect('/');
+    if (req.user.isComplete) res.redirect('/');
+    else res.redirect('/registration');
   }
 );
 
-router.get('/logout', (req, res) => {
-  req.logout();
-  console.log('Logged Out!!!');
-  res.redirect('/');
-});
+router.get(
+  '/logout',
+  passport.authenticate('azuread-openidconnect'),
+  (req, res) => {
+    req.logOut();
+    res.redirect('/');
+    // todo: remove session from redis session store
+  }
+);
 
 module.exports = router;

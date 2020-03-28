@@ -1,17 +1,10 @@
 const router = require('express').Router();
-
-const isAuthenticated = (req, res, next) => {
-  if (req.user) return next();
-  else {
-    return res.status(401).json({
-      error: 'User not authenticated'
-    });
-  }
-};
+const connection = require('../utils/mysqlConfig');
+const { isAuthenticated } = require('../utils/common');
 
 router.get('/', isAuthenticated, (req, res) => {
   console.log(req.user);
-  res.send(req.user);
+  res.json(req.user);
 });
 
 module.exports = router;

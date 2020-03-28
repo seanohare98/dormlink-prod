@@ -21,6 +21,9 @@ module.exports = {
     'prettier/prettier': 'error',
     'no-console': 'off',
     'comma-dangle': 'off',
-    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }]
+    'no-underscore-dangle': 'off',
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    'react/jsx-props-no-spreading': 'off',
+    'react/prop-types': 'off'
   }
 };

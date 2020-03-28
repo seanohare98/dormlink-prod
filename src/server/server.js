@@ -1,12 +1,13 @@
-const env = require('dotenv').config();
+require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const cors = require('cors');
+const graphqlHTTP = require('express-graphql');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
-const passportInit = require('./utils/passport');
+require('./utils/passportConfig');
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 
@@ -29,8 +30,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(HTML_FILE);
 });
-
-app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server Port: ${PORT}`));

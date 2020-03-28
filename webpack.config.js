@@ -69,11 +69,11 @@ module.exports = env => {
       port: 3000,
       historyApiFallback: true,
       open: true,
-      // proxy: {
-      //   '*': 'http://[::1]:8080',
-      //   secure: false,
-      //   changeOrigin: true
-      // },
+      proxy: {
+        '*': 'http://[::1]:8080',
+        secure: false,
+        changeOrigin: true
+      },
       overlay: {
         errors: true,
         warnings: true
