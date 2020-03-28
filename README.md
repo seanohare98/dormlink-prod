@@ -1,14 +1,14 @@
 # DormLink
 
-git clone https://github.com/seanohare98/dormlink.git
+1. git clone https://github.com/seanohare98/dormlink.git
 
-cd dormlink
+2. cd dormlink
 
-npm i (install dependencies)
+3. npm install (install dependencies)
 
-npm run start (prod build)
+4. npm run dev (for development)
 
-visit http://localhost:8080
+5. visit http://localhost:8080 in browser
 
 Don't forget to:
 
