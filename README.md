@@ -26,7 +26,7 @@
 - Install [Node.js](https://nodejs.org/en/download/).
 - Run `node --version` and make sure it's `v12.10.0`.
 - Run `npm --version` and make sure it's `6.13.1`.
-- Charli reported an issue with `apt-get` installing outdated node and npm packages, so **double-check that your install is up-to-date.**
+- Charlie reported an issue with `apt-get` installing outdated node and npm packages, so **double-check that your install is up-to-date.**
 
 #### Running DormLink on `localhost`
 
@@ -40,7 +40,7 @@
 
 - [**_Integrate prettier w/ your code editor_**](https://prettier.io/docs/en/editors.html)
 - Have .env file in the root directory!
-- Monitor the Webpack and nodemon output/logs if you encounter an issue. It's easier to help you if we have the logs.
+- Monitor the Webpack and nodemon output and logs if you encounter an issue.
 
 ---
 
