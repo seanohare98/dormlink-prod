@@ -26,6 +26,7 @@
 - Install [Node.js](https://nodejs.org/en/download/).
 - Run `node --version` and make sure it's `v12.10.0`.
 - Run `npm --version` and make sure it's `6.13.1`.
+- (also work with node v13.12.0 and npm 6.14.4)
 - Charlie reported an issue with `apt-get` installing outdated node and npm packages, so **double-check that your install is up-to-date.**
 
 #### Running DormLink on `localhost`
