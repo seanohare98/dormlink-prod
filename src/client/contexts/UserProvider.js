@@ -8,7 +8,10 @@ const UserProvider = ({ children }) => {
   useEffect(() => {
     fetch('/user')
       .then(res => res.json())
-      .then(res => setState(res))
+      .then(res => {
+        res.loading = false;
+        setState(res);
+      })
       .catch(err => {
         console.log(err);
       });

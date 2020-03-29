@@ -4,7 +4,7 @@ import Container from '@material-ui/core/Container';
 import Background from '../../../public/background.png';
 import Logo from '../../../public/logo.png';
 import SignIn from '../../../public/sign-in.png';
-import LoginButton from './LoginButton';
+import LoginButton from '../components/LoginButton';
 
 const LandingContainer = withStyles({
   root: {

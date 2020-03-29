@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { fade, withStyles, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -16,12 +16,15 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { UserContext } from '../contexts/UserProvider';
 
+const transparentAppBar = withStyles({
+  root: {
+    background: 'transparent',
+    boxShadow: 'none'
+  }
+})(AppBar);
 const useStyles = makeStyles(theme => ({
   grow: {
     flexGrow: 1
-  },
-  menuButton: {
-    marginRight: theme.spacing(2)
   },
   title: {
     display: 'none',
@@ -40,7 +43,7 @@ const useStyles = makeStyles(theme => ({
     marginLeft: 0,
     width: '100%',
     [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(3),
+      marginLeft: theme.spacing(6),
       width: 'auto'
     }
   },
@@ -84,7 +87,7 @@ export default function NavBar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const [userData, setUserData] = useContext(UserContext);
+  const [user, setUser] = useContext(UserContext);
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -124,19 +127,11 @@ export default function NavBar() {
     >
       <MenuItem>
         <IconButton color='inherit'>
-          <Badge badgeContent={userData.messages} color='secondary'>
+          <Badge badgeContent={user.messages} color='secondary'>
             <MailIcon />
           </Badge>
         </IconButton>
         <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton color='inherit'>
-          <Badge badgeContent={userData.notifications} color='secondary'>
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton color='inherit'>
@@ -149,15 +144,8 @@ export default function NavBar() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position='static'>
+      <transparentAppBar position='static'>
         <Toolbar>
-          <IconButton
-            edge='start'
-            className={classes.menuButton}
-            color='inherit'
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography className={classes.title} variant='h6' noWrap>
             DormLink
           </Typography>
@@ -177,13 +165,8 @@ export default function NavBar() {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton color='inherit'>
-              <Badge badgeContent={userData.messages} color='secondary'>
+              <Badge badgeContent={user.messages} color='secondary'>
                 <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton color='inherit'>
-              <Badge badgeContent={userData.notifications} color='secondary'>
-                <NotificationsIcon />
               </Badge>
             </IconButton>
             <IconButton
@@ -205,7 +188,7 @@ export default function NavBar() {
             </IconButton>
           </div>
         </Toolbar>
-      </AppBar>
+      </transparentAppBar>
       {renderMobileMenu}
       {renderMenu}
     </div>

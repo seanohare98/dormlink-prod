@@ -19,7 +19,7 @@ const theme = createMuiTheme({
 
 export default function App() {
   const [getUser, setUser] = useContext(UserContext);
-
+  console.log(getUser);
   return getUser.loading && true ? (
     <CircularProgress />
   ) : (
