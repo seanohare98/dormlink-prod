@@ -32,9 +32,9 @@
 
 1. Navigate to the root directory of the project `cd dormlink`.
 2. Place `.env` here with all the necessary variables filled in.b
-   "[3. Use `npm i` to install dependencies (these are specified in `package.json`).
-3. Use `npm run dev` to start the server and webpack build process.
-4. Visit this `localhost:8080` URI in your browser to use DormLife.
+3. Use `npm i` to install dependencies (these are specified in `package.json`).
+4. Use `npm run dev` to start the server and webpack build process.
+5. Visit this `localhost:8080` URI in your browser to use DormLife.
 
 #### Remember:
 
