@@ -24,22 +24,22 @@
 ##### Node.js Backend
 
 - Install [Node.js](https://nodejs.org/en/download/).
-- Run `node --version` and make sure it's `v12.10.0`.
-- Run `npm --version` and make sure it's `6.13.1`.
-- (also work with node v13.12.0 and npm 6.14.4)
-- Charlie reported an issue with `apt-get` installing outdated node and npm packages, so **double-check that your install is up-to-date.**
+- Run `node --version` and make sure it's `v12.10.0` or higher.
+- Run `npm --version` and make sure it's `6.13.1` or higher.
+- Charlie reported an issue with `apt-get` installing outdated node and npm packages, so **_double-check that your install is up-to-date!_**
 
 #### Running DormLink on `localhost`
 
 1. Navigate to the root directory of the project `cd dormlink`.
-2. Place `.env` here with all the necessary variables filled in.b
+2. Place `.env` here with all the necessary variables filled in.
 3. Use `npm i` to install dependencies (these are specified in `package.json`).
 4. Use `npm run dev` to start the server and webpack build process.
-5. Visit this `localhost:8080` URI in your browser to use DormLife.
+5. Visit `http://localhost:8080` in your browser to use DormLife.
 
 #### Remember:
 
-- [**_Integrate prettier w/ your code editor_**](https://prettier.io/docs/en/editors.html)
+- We will use 'feature branches'. [Here](https://bocoup.com/blog/git-workflow-walkthrough-feature-branches) is a guide.
+- [**_Integrate prettier w/ your code editor._**](https://prettier.io/docs/en/editors.html)
 - Have .env file in the root directory!
 - Monitor the Webpack and nodemon output and logs if you encounter an issue.
 
