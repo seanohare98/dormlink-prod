@@ -14,7 +14,7 @@
 
 - Install [MySQL](https://www.mysql.com/downloads/).
 - [Create a MySQL user and database called 'dormlink'.](https://dev.mysql.com/doc/mysql-getting-started/en/)
-- Fill out the correct user/password/network/database credentials in `.env`.
+- Fill out the correct host/user/password/db credentials in `.env`.
 
 ##### ~~Neo4j Graph Platform~~
 
@@ -38,9 +38,9 @@
 
 #### Remember:
 
-- We will use 'feature branches'. [Here](https://bocoup.com/blog/git-workflow-walkthrough-feature-branches) is a guide.
 - [**_Integrate prettier w/ your code editor._**](https://prettier.io/docs/en/editors.html)
-- Have .env file in the root directory!
+- We should a [feature branch](https://bocoup.com/blog/git-workflow-walkthrough-feature-branches) git workflow.
+- Have `.env` in the **_root_** directory!
 - Monitor the Webpack and nodemon output and logs if you encounter an issue.
 
 ---
@@ -50,7 +50,7 @@
 #### Learning resources:
 
 - [The official React docs are very beginner friendly.](https://reactjs.org/docs/getting-started.html)
-- [React Router Training](https://reacttraining.com/react-router/web/guides/quick-start).
+- [React Router Training.](https://reacttraining.com/react-router/web/guides/quick-start)
 - [Material UI Docs](https://material-ui.com/) (explains the frontend component APIs and styling methods I've been using on this project).
 - [Express.js Docs.](https://expressjs.com/en/starter/installing.html)
 - [Webpack Docs](https://webpack.js.org/concepts/) (if you want to understand how I configured the build and transpile process for this project and how we serve our assets).

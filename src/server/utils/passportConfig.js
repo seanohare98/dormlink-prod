@@ -1,7 +1,7 @@
 const passport = require('passport');
 const { OIDCStrategy } = require('passport-azure-ad');
-const { validateEmail } = require('./common.js');
-const User = require('../services/userServices.js');
+const { validateEmail, extractAzureProfile } = require('./common.js');
+const User = require('../data/userModel.js');
 
 passport.use(
   new OIDCStrategy(
@@ -27,7 +27,7 @@ passport.use(
     (req, iss, sub, profile, accessToken, refreshToken, done) => {
       if (!validateEmail(profile)) return done(null, false);
 
-      return User.findOrCreate(profile, user => {
+      return User.findOrCreate(extractAzureProfile(profile), user => {
         done(null, user);
       });
     }

@@ -8,8 +8,10 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
 require('./utils/passportConfig');
+const { userSchema, root } = require('./utils/graphqlConfig');
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
+const { isAuthenticated } = require('./utils/common');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -30,6 +32,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
+app.use(
+  '/graphql',
+  [bodyParser.json(), isAuthenticated],
+  graphqlHTTP({
+    schema: userSchema,
+    rootValue: root,
+    graphiql: true
+  })
+);
 app.get('*', (req, res) => {
   res.sendFile(HTML_FILE);
 });
