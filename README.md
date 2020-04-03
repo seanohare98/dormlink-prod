@@ -14,7 +14,7 @@
 
 - Install [MySQL](https://www.mysql.com/downloads/).
 - [Create a MySQL user and database called 'dormlink'.](https://dev.mysql.com/doc/mysql-getting-started/en/)
-- Fill out the correct host/user/password/db credentials in `.env`.
+- Fill out the correct host/user/password/database credentials in `.env`.
 
 ##### ~~Neo4j Graph Platform~~
 
@@ -39,7 +39,7 @@
 #### Remember:
 
 - [**_Integrate prettier w/ your code editor._**](https://prettier.io/docs/en/editors.html)
-- We should a [feature branch](https://bocoup.com/blog/git-workflow-walkthrough-feature-branches) git workflow.
+- We should use a [feature branch workflow.](https://bocoup.com/blog/git-workflow-walkthrough-feature-branches)
 - Have `.env` in the **_root_** directory!
 - Monitor the Webpack and nodemon output and logs if you encounter an issue.
 
@@ -49,13 +49,16 @@
 
 #### Learning resources:
 
-- [The official React docs are very beginner friendly.](https://reactjs.org/docs/getting-started.html)
-- [React Router Training.](https://reacttraining.com/react-router/web/guides/quick-start)
-- [Material UI Docs](https://material-ui.com/) (explains the frontend component APIs and styling methods I've been using on this project).
-- [Express.js Docs.](https://expressjs.com/en/starter/installing.html)
-- [Webpack Docs](https://webpack.js.org/concepts/) (if you want to understand how I configured the build and transpile process for this project and how we serve our assets).
-- [Airbnb Style Guide](https://github.com/airbnb/javascript) (our project eslint extends this style guide because I thought that it would give you guys helpful feedback since you're new to javascript).
+- [The official React docs are very beginner friendly](https://reactjs.org/docs/getting-started.html)
+- [React Router Training](https://reacttraining.com/react-router/web/guides/quick-start)
+- [React Context State Sharing](https://dev.to/sunnysingh/sharing-state-using-reacts-context-api-3623)
+- [Apollo Client Docs](https://www.apollographql.com/docs/react/get-started/)
+- [Material UI Docs](https://material-ui.com/) (explains the frontend component APIs and styling methods I've been using on this project)
+- [Express.js Docs](https://expressjs.com/en/starter/installing.html)
+- [Webpack Docs](https://webpack.js.org/concepts/) (if you want to understand how I configured the build and transpile process for this project and how we serve our assets)
+- [Airbnb Style Guide](https://github.com/airbnb/javascript) (our project eslint extends this style guide because I thought that it would give you guys helpful feedback since you're new to javascript)
 
 #### Research resources:
 
 - [K-Nearest-Neighbor Neo4j Implementation Examples](https://neo4j.com/docs/graph-algorithms/current/labs-algorithms/approximate-nearest-neighbors/)
+- [GraphQL Auth](https://github.com/apollographql/graphql-tools/issues/313)

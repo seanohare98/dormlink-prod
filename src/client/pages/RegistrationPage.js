@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { UserContext } from '../contexts/UserProvider';
 
 export default function RegistrationPage() {
-  const userData = useContext(UserContext);
+  return <div>It looks like you need to finish setting up your profile!</div>;
 }

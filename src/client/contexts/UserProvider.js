@@ -1,12 +1,13 @@
 import React, { createContext, useEffect, useState } from 'react';
 
 const UserContext = createContext([{}, () => {}]);
+const UserConsumer = UserContext.Consumer;
 
 const UserProvider = ({ children }) => {
   const [state, setState] = useState({ loading: true });
 
   useEffect(() => {
-    fetch('/user')
+    fetch('/auth/user')
       .then(res => res.json())
       .then(res => {
         res.loading = false;
@@ -24,4 +25,4 @@ const UserProvider = ({ children }) => {
   );
 };
 
-export { UserContext, UserProvider };
+export { UserContext, UserConsumer, UserProvider };

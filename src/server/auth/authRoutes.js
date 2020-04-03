@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const passport = require('passport');
+const { isAuthenticated } = require('../utils/common');
 
 router.get(
   '/azure',
@@ -16,7 +17,7 @@ router.post(
   }),
   (req, res) => {
     if (req.user.isComplete) res.redirect('/');
-    else res.redirect('/registration');
+    else res.redirect('/register');
   }
 );
 
@@ -29,5 +30,9 @@ router.get(
     // todo: remove session from redis session store
   }
 );
+
+router.get('/user', isAuthenticated, (req, res) => {
+  res.json({ id: req.user });
+});
 
 module.exports = router;

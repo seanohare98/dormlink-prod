@@ -11,12 +11,12 @@ exports.validateEmail = profile => {
 exports.extractAzureProfile = profile => {
   const { preferred_username: email, name: fullName } = profile._json;
   const sid = email.match(/[^@]+/)[0];
-  const last = fullName
+  const lastName = fullName
     .split(' ')[0]
     .slice(0, -1)
     .toLowerCase();
-  const first = fullName.split(' ')[1].toLowerCase();
-  return { sid, first, last, email };
+  const firstName = fullName.slice(fullName.indexOf(' ')).toLowerCase();
+  return { sid, firstName, lastName, email };
 };
 
 exports.isAuthenticated = (req, res, next) => {

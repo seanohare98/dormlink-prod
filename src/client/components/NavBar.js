@@ -22,6 +22,7 @@ const transparentAppBar = withStyles({
     boxShadow: 'none'
   }
 })(AppBar);
+
 const useStyles = makeStyles(theme => ({
   grow: {
     flexGrow: 1
