@@ -54,6 +54,8 @@
 - [React Context State Sharing](https://dev.to/sunnysingh/sharing-state-using-reacts-context-api-3623)
 - [Apollo Client Docs](https://www.apollographql.com/docs/react/get-started/)
 - [Material UI Docs](https://material-ui.com/) (explains the frontend component APIs and styling methods I've been using on this project)
+- [7 UI Tips](https://www.crowdform.co.uk/blog/7-lesser-known-tricks-to-level-up-your-ui-design)
+- [Understanding UI](https://leerob.io/blog/style-guides-component-libraries-design-systems)
 - [Express.js Docs](https://expressjs.com/en/starter/installing.html)
 - [Webpack Docs](https://webpack.js.org/concepts/) (if you want to understand how I configured the build and transpile process for this project and how we serve our assets)
 - [Airbnb Style Guide](https://github.com/airbnb/javascript) (our project eslint extends this style guide because I thought that it would give you guys helpful feedback since you're new to javascript)
