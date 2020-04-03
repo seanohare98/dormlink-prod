@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from 'react';
 
 const UserContext = createContext([{}, () => {}]);
 const UserConsumer = UserContext.Consumer;
+const useUser = () => React.useContext(UserContext);
 
 const UserProvider = ({ children }) => {
   const [state, setState] = useState({ loading: true });
@@ -25,4 +26,4 @@ const UserProvider = ({ children }) => {
   );
 };
 
-export { UserContext, UserConsumer, UserProvider };
+export { useUser, UserContext, UserConsumer, UserProvider };

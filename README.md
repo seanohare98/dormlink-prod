@@ -13,7 +13,7 @@
 ##### MySQL Database
 
 - Install [MySQL](https://www.mysql.com/downloads/).
-- [Create a MySQL user and database called 'dormlink'.](https://dev.mysql.com/doc/mysql-getting-started/en/)
+- [Create a MySQL user and database](https://dev.mysql.com/doc/mysql-getting-started/en/).
 - Fill out the correct host/user/password/database credentials in `.env`.
 
 ##### ~~Neo4j Graph Platform~~
@@ -38,8 +38,8 @@
 
 #### Remember:
 
-- [**_Integrate prettier w/ your code editor._**](https://prettier.io/docs/en/editors.html)
-- We should use a [feature branch workflow.](https://bocoup.com/blog/git-workflow-walkthrough-feature-branches)
+- [Integrate prettier w/ your code editor](https://prettier.io/docs/en/editors.html).
+- We should use a [feature branch workflow](https://bocoup.com/blog/git-workflow-walkthrough-feature-branches).
 - Have `.env` in the **_root_** directory!
 - Monitor the Webpack and nodemon output and logs if you encounter an issue.
 
