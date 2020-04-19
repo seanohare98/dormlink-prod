@@ -40,6 +40,6 @@ exports.hostelInfo = [
   { name: 'Wu Yee Sun Student Hostel', affiliation: 'Wu Yee Sun College' },
   
   //WS
-  { name: 'Lee Woo Sing Student Hostel', affiliation: 'Lee Woo Sing College' },
+  { name: 'Lee Woo Sing Student Hostel', affiliation: 'Lee Woo Sing College' }
   
 ];
