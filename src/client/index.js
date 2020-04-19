@@ -4,7 +4,7 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { UserProvider } from './contexts/UserProvider';
 import App from './App';
-import client from './contexts/GraphQLClient';
+import client from './utils/GraphQLClient';
 import './styles.scss';
 import theme from './utils/theme';
 

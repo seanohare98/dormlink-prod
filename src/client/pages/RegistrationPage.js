@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import useFormFields from '../hooks/useFormFields';
 import BasicInfo from '../components/BasicInfo';
+import Preferences from '../components/Preferences';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -42,9 +43,9 @@ function getStepContent(step) {
     case 0:
       return 'Tell us who you are!';
     case 1:
-      return 'Tell us what type of roommate you want!';
+      return 'Tell us what type of roommate you prefer!';
     case 2:
-      return 'Complete your registration!';
+      return "You're all done!";
     default:
       return 'Unknown step';
   }
@@ -56,7 +57,11 @@ export default function RegistrationPage() {
   const [fieldsFilled, updateFields] = useFormFields({
     gender: 'female',
     age: '18',
-    hostel: ''
+    hostel: '',
+    schedule: '50',
+    cleanliness: '50',
+    participation: '50',
+    similarity: '50'
   });
   const [activeStep, setActiveStep] = React.useState(0);
 
@@ -79,10 +84,13 @@ export default function RegistrationPage() {
       </Stepper>
       <div>
         <div className={classes.instructions}>
-          <Typography>{getStepContent(activeStep)}</Typography>
+          <Typography variant='h5'>{getStepContent(activeStep)}</Typography>
         </div>
         {activeStep === 0 && (
           <BasicInfo value={fieldsFilled} onChange={updateFields} />
+        )}
+        {activeStep === 1 && (
+          <Preferences value={fieldsFilled} onChange={updateFields} />
         )}
         <div className={classes.buttonLayout}>
           <Button

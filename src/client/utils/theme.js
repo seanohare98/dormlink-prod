@@ -10,15 +10,12 @@ const theme = createMuiTheme({
   overrides: {
     MuiRadio: {
       root: {
-        display: 'inline-block',
-        width: '100px',
-        marginLeft: '50px'
+        width: '100px'
       }
     },
     MuiTextField: {
       root: {
-        display: 'inline-block',
-        marginLeft: '100px'
+        display: 'inline-block'
       }
     }
   }

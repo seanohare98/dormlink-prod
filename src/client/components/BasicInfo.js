@@ -7,31 +7,42 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import TextField from '@material-ui/core/TextField';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { hostelInfo as options } from '../utils/constants';
 
 const InfoContainer = withStyles({
   root: {
     justifyContent: 'center',
-    paddingTop: '5vh'
+    paddingTop: '5vh',
+    backgroundColor: '#e1e3dd',
+    borderRadius: '25px'
   }
 })(Container);
 
 const useStyles = makeStyles(theme => ({
   formControl: {
-    margin: theme.spacing(2),
-    minWidth: '30%'
+    margin: theme.spacing(3),
+    marginBottom: theme.spacing(1),
+    minWidth: '70%'
   },
   formControlText: {
     width: '80%',
-    margin: theme.spacing(2)
+    margin: theme.spacing(2),
+    marginBottom: theme.spacing(2)
   },
   formLabel: {
     color: '#000',
     '&.Mui-focused': {
       color: '#000'
-    },
-    marginRight: '30px'
+    }
+  },
+  select: {
+    minWidth: theme.spacing(20)
+  },
+  autoComplete: {
+    width: '50%'
   }
 }));
 
@@ -66,53 +77,24 @@ export default function RadioButtonsGroup({ value, onChange }) {
         <FormLabel component='legend' classes={{ root: classes.formLabel }}>
           Age
         </FormLabel>
-        <RadioGroup row name='age' value={value.age} onChange={onChange}>
-          <FormControlLabel
-            value='17'
-            control={<Radio color='primary' />}
-            label='17'
-          />
-          <FormControlLabel
-            value='18'
-            control={<Radio color='primary' />}
-            label='18'
-          />
-          <FormControlLabel
-            value='19'
-            control={<Radio color='primary' />}
-            label='19'
-          />
-          <FormControlLabel
-            value='20'
-            control={<Radio color='primary' />}
-            label='20'
-          />
-          <FormControlLabel
-            value='21'
-            control={<Radio color='primary' />}
-            label='21'
-          />
-          <FormControlLabel
-            value='22'
-            control={<Radio color='primary' />}
-            label='22'
-          />
-          <FormControlLabel
-            value='23'
-            control={<Radio color='primary' />}
-            label='23'
-          />
-          <FormControlLabel
-            value='24'
-            control={<Radio color='primary' />}
-            label='24'
-          />
-          <FormControlLabel
-            value='25'
-            control={<Radio color='primary' />}
-            label='25'
-          />
-        </RadioGroup>
+        <Select
+          name='age'
+          classes={{ root: classes.select }}
+          value={value.age}
+          onChange={onChange}
+        >
+          <MenuItem value={16}>16</MenuItem>
+          <MenuItem value={17}>17</MenuItem>
+          <MenuItem value={18}>18</MenuItem>
+          <MenuItem value={19}>19</MenuItem>
+          <MenuItem value={20}>20</MenuItem>
+          <MenuItem value={21}>21</MenuItem>
+          <MenuItem value={22}>22</MenuItem>
+          <MenuItem value={23}>23</MenuItem>
+          <MenuItem value={24}>24</MenuItem>
+          <MenuItem value={25}>25</MenuItem>
+          <MenuItem value={26}>26</MenuItem>
+        </Select>
       </FormControl>
       <FormControl
         component='fieldset'
@@ -122,16 +104,19 @@ export default function RadioButtonsGroup({ value, onChange }) {
           Hostel
         </FormLabel>
         <Autocomplete
+          classes={{ root: classes.autoComplete }}
           autoComplete
           options={options.sort((a, b) => (a.name.attr > b.name.attr ? 1 : -1))}
           groupBy={option => option.affiliation}
           getOptionLabel={option => option.name}
           renderInput={params => (
-            <TextField {...params} label='Hostels' variant='outlined' />
+            <TextField {...params} label={value.hostel} variant='outlined' />
           )}
           onChange={(event, text) => {
-            const obj = { target: { name: 'hostel', value: text.name } };
-            onChange(obj);
+            if (text) {
+              const obj = { target: { name: 'hostel', value: text.name } };
+              onChange(obj);
+            }
           }}
         />
       </FormControl>
