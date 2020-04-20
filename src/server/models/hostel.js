@@ -3,11 +3,11 @@ module.exports = (sequelize, DataTypes) => {
     'hostel',
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: false
       },
-      name: {
+      affiliation: {
         type: DataTypes.STRING,
         allowNull: false
       }

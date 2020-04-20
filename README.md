@@ -10,23 +10,25 @@
 - Install [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 - Clone the repository to your machine. Run `git clone https://github.com/seanohare98/dormlink.git`.
 
-##### MySQL Database
+##### MySQL Relational Database
 
 - Install [MySQL](https://www.mysql.com/downloads/).
 - [Create a MySQL user and database](https://dev.mysql.com/doc/mysql-getting-started/en/).
-- Fill out the correct host/user/password/database credentials in `.env`.
+- Fill out associated credentials in `.env`.
 
-##### ~~Neo4j Graph Platform~~
+##### Neo4j Graph Platform
 
-- ~~Neo4j integration is still in development.~~
-- ~~Don't worry about it for now. I'll help you guys later.~~
+- Install [Neo4j](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781783287253/1/ch01lvl1sec12/single-node-installation-of-neo4j-over-mac-os-x).
+- Download [Neo4j Desktop](https://neo4j.com/download-center/#desktop).
+- Create a version `v3.5.17` database instance.
+- Install plugin for [Neo4j Graph Data Science](https://neo4j.com/docs/graph-data-science/current/installation/#_supported_neo4j_versions) library.
+- Fill out associated credentials in `.env`.
 
 ##### Node.js Backend
 
 - Install [Node.js](https://nodejs.org/en/download/).
 - Run `node --version` and make sure it's `v12.10.0` or higher.
 - Run `npm --version` and make sure it's `6.13.1` or higher.
-- Charlie reported an issue with `apt-get` installing outdated node and npm packages, so **_double-check that your install is up-to-date!_**
 
 #### Running DormLink on `localhost`
 
@@ -47,7 +49,7 @@
 
 ## References:
 
-#### Learning resources:
+#### Learning:
 
 - [React](https://reactjs.org/docs/getting-started.html)
 - [React Router Training](https://reacttraining.com/react-router/web/guides/quick-start)
@@ -60,7 +62,7 @@
 - [Webpack](https://webpack.js.org/concepts/)
 - [Airbnb Style Guide](https://github.com/airbnb/javascript)
 
-#### Research resources:
+#### Research:
 
 - [K-Nearest-Neighbor Neo4j Implementation Examples](https://neo4j.com/docs/graph-algorithms/current/labs-algorithms/approximate-nearest-neighbors/)
 - [GraphQL Auth](https://github.com/apollographql/graphql-tools/issues/313)

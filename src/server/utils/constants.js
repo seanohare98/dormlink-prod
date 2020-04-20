@@ -1,3 +1,5 @@
+exports.traits = ['cleanliness', 'participation', 'schedule', 'studious'];
+exports.ranks = [0, 50, 75, 100];
 exports.hostelInfo = [
   // CC
   { name: 'PMHC High Block', affiliation: 'Chung Chi' },

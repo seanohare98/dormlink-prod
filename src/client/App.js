@@ -18,13 +18,16 @@ export default function App() {
     <Router history={history}>
       <Route path='/' component={NavBar} />
       <Switch>
-        <PrivateRoute exact path='/register' component={Registration} />
+        {!user.complete && (
+          <PrivateRoute exact path='/register' component={Registration} />
+        )}
         <PrivateRoute
           exact
           path='/'
           component={HomePage}
           alternate={LandingPage}
         />
+        <Route render={() => <h2>404 Sorry, no page found</h2>} />
       </Switch>
     </Router>
   );

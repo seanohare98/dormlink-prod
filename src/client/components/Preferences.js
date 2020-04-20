@@ -8,9 +8,10 @@ import FormLabel from '@material-ui/core/FormLabel';
 const InfoContainer = withStyles({
   root: {
     justifyContent: 'center',
-    paddingTop: '5vh',
+    padding: '3vh',
     backgroundColor: '#e1e3dd',
-    borderRadius: '25px'
+    borderRadius: '25px',
+    width: '70%'
   }
 })(Container);
 
@@ -36,7 +37,7 @@ const useStyles = makeStyles(theme => ({
 const levels = [
   {
     value: 0,
-    label: 'No way!'
+    label: 'No Way'
   },
   {
     value: 25,
@@ -44,7 +45,7 @@ const levels = [
   },
   {
     value: 50,
-    label: "Don't mind..."
+    label: 'Sometimes'
   },
   {
     value: 75,
@@ -52,7 +53,7 @@ const levels = [
   },
   {
     value: 100,
-    label: 'Yes please!'
+    label: 'Definitely'
   }
 ];
 
@@ -67,7 +68,7 @@ export default function RadioButtonsGroup({ value, onChange }) {
     <InfoContainer maxWidth='xl'>
       <FormControl component='fieldset' classes={{ root: classes.formControl }}>
         <FormLabel component='legend' classes={{ root: classes.formLabel }}>
-          Night Owl?
+          A Night Owl?
         </FormLabel>
         <Slider
           defaultValue={value.schedule}
@@ -84,7 +85,7 @@ export default function RadioButtonsGroup({ value, onChange }) {
       </FormControl>
       <FormControl component='fieldset' classes={{ root: classes.formControl }}>
         <FormLabel component='legend' classes={{ root: classes.formLabel }}>
-          Neat Freak?
+          A Neat Freak?
         </FormLabel>
         <Slider
           defaultValue={value.cleanliness}
@@ -100,7 +101,7 @@ export default function RadioButtonsGroup({ value, onChange }) {
       </FormControl>
       <FormControl component='fieldset' classes={{ root: classes.formControl }}>
         <FormLabel component='legend' classes={{ root: classes.formLabel }}>
-          Active Community Member?
+          An Active Community Member?
         </FormLabel>
         <Slider
           defaultValue={value.participation}
@@ -117,12 +118,12 @@ export default function RadioButtonsGroup({ value, onChange }) {
       </FormControl>
       <FormControl component='fieldset' classes={{ root: classes.formControl }}>
         <FormLabel component='legend' classes={{ root: classes.formLabel }}>
-          Just Like You? (age, major, etc.)
+          A Hard-Working Student?
         </FormLabel>
         <Slider
-          defaultValue={value.similarity}
+          defaultValue={value.studious}
           onChangeCommitted={(event, num) => {
-            const obj = { target: { name: 'similarity', value: num } };
+            const obj = { target: { name: 'studious', value: num } };
             onChange(obj);
           }}
           getAriaValueText={valuetext}

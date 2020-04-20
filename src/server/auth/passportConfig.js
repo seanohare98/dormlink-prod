@@ -33,7 +33,7 @@ passport.use(
         where: { sid: userInfo.sid },
         defaults: { ...userInfo, isComplete: false }
       }).then(([user]) => {
-        done(null, user.sid);
+        done(null, { id: user.sid, complete: user.isComplete });
       });
     }
   )

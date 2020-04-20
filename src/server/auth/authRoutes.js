@@ -16,7 +16,7 @@ router.post(
     failureRedirect: '/error'
   }),
   (req, res) => {
-    if (req.user.isComplete) res.redirect('/');
+    if (req.user.complete) res.redirect('/');
     else res.redirect('/register');
   }
 );
@@ -32,7 +32,7 @@ router.get(
 );
 
 router.get('/user', isAuthenticated, (req, res) => {
-  res.json({ id: req.user });
+  res.json(req.user);
 });
 
 module.exports = router;

@@ -6,25 +6,17 @@ module.exports = {
     hostel: parent => parent.getHostel()
   },
   Query: {
-    user: (parent, args, { req, db }) => db.user.findByPk(req.user),
+    user: (parent, args, { req, db }) => db.user.findByPk(req.user.id),
     users: (parent, args, { db }) => db.user.findAll(),
     hostel: (parent, { id }, { db }) => db.hostel.findByPk(id),
     hostels: (parent, args, { db }) => db.hostel.findAll()
   },
   Mutation: {
-    createUser: (parent, { sid, firstName, lastName, email }, { db }) =>
-      db.user.create({
-        sid,
-        firstName,
-        lastName,
-        email,
-        hostel: null,
-        isComplete: false
-      }),
     updateUser: (parent, { sid, hostel }, { db }) =>
       db.user.update(
         {
-          hostel
+          hostelId: hostel,
+          isComplete: true
         },
         {
           where: {

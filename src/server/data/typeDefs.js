@@ -11,8 +11,7 @@ const typeDefs = gql`
   }
   type Hostel {
     id: ID!
-    name: String
-    content: String!
+    affiliation: String
     users: [User]
   }
   type Query {
@@ -22,16 +21,8 @@ const typeDefs = gql`
     hostels: [Hostel!]!
   }
   type Mutation {
-    createUser(
-      sid: ID!
-      firstName: String!
-      lastName: String!
-      email: String!
-      hostel: ID
-      isComplete: Boolean
-    ): User!
-    updateUser(sid: ID!, hostel: ID): [Int!]!
-    deleteUser(sid: ID!): Int!
+    updateUser(sid: ID!, hostel: ID!): Int
+    deleteUser(sid: ID!): Int
   }
 `;
 

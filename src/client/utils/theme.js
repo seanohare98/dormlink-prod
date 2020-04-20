@@ -8,11 +8,6 @@ const theme = createMuiTheme({
     }
   },
   overrides: {
-    MuiRadio: {
-      root: {
-        width: '100px'
-      }
-    },
     MuiTextField: {
       root: {
         display: 'inline-block'

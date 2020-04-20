@@ -26,7 +26,9 @@ exports.isAuthenticated = (req, res, next) => {
   });
 };
 
-exports.mySQLCallback = (err, status) => {
-  if (err) throw err;
-  return status;
+exports.isCompleteAuthenticated = (req, res, next) => {
+  if (req.user && req.user.isComplete) return next();
+  return res.status(401).json({
+    Error: 'User profile not complete.'
+  });
 };

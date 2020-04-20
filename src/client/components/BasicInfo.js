@@ -15,9 +15,10 @@ import { hostelInfo as options } from '../utils/constants';
 const InfoContainer = withStyles({
   root: {
     justifyContent: 'center',
-    paddingTop: '5vh',
+    padding: '3vh',
     backgroundColor: '#e1e3dd',
-    borderRadius: '25px'
+    borderRadius: '25px',
+    width: '70%'
   }
 })(Container);
 
@@ -25,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(3),
     marginBottom: theme.spacing(1),
-    minWidth: '70%'
+    minWidth: '80%'
   },
   formControlText: {
     width: '80%',
@@ -36,13 +37,15 @@ const useStyles = makeStyles(theme => ({
     color: '#000',
     '&.Mui-focused': {
       color: '#000'
-    }
+    },
+    marginBottom: theme.spacing(1)
   },
   select: {
-    minWidth: theme.spacing(20)
+    minWidth: '80%'
   },
   autoComplete: {
-    width: '50%'
+    minWidth: '50%',
+    maxWidth: '100%'
   }
 }));
 

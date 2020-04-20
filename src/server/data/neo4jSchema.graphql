@@ -1,0 +1,28 @@
+type Student {
+  sid: ID!
+  name: String
+  hostel: String!
+  age: Int
+  gender: String
+  matched: [Student] @relation(name: "MATCHED", direction: "BOTH")
+  rankings: [Ranking] @relation(name: "RANKS", direction: "OUT")
+}
+
+type Trait {
+  name: ID!
+  rankings: [Ranking] @relation(name: "RANKS", direction: "IN")
+}
+
+type Ranking {
+  id: ID!
+  rank: Int!
+  trait: Trait @relation(name: "RANKS", direction: "OUT")
+  student: Student @relation(name: "RANKS", direction: "IN")
+}
+
+type Query {
+  studentBySubstring(substring: String): [Student]
+    @cypher(
+      statement: "MATCH (s:Student) WHERE s.name CONTAINS $substring RETURN s"
+    )
+}
