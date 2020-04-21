@@ -12,6 +12,5 @@ export default () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
   if (!data) return <p>Not found</p>;
-
   return <div>{JSON.stringify(data)}</div>;
 };

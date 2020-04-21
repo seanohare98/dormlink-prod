@@ -1,10 +1,10 @@
-const neo4j = require('neo4j-driver');
-
 exports.traits = ['cleanliness', 'participation', 'schedule', 'studious'];
 exports.students = [
   {
     hostel: 'PMHC High Block',
     sid: '1155116400',
+    first: 'john',
+    last: 'blah',
     age: 21,
     gender: 'male',
     schedule: 50,
@@ -15,6 +15,8 @@ exports.students = [
   {
     hostel: 'PMHC High Block',
     sid: '1155116500',
+    first: 'jane',
+    last: 'test',
     age: 21,
     gender: 'male',
     schedule: 100,
@@ -25,6 +27,8 @@ exports.students = [
   {
     hostel: 'PMHC High Block',
     sid: '1155116700',
+    first: 'test',
+    last: 'hello',
     age: 18,
     gender: 'male',
     schedule: 25,
@@ -35,6 +39,8 @@ exports.students = [
   {
     hostel: 'PMHC High Block',
     sid: '1155116800',
+    first: 'jack',
+    last: 'son',
     age: 19,
     gender: 'male',
     schedule: 50,
@@ -45,6 +51,8 @@ exports.students = [
   {
     hostel: 'PMHC High Block',
     sid: '1155116900',
+    first: 'mike',
+    last: 'guy',
     age: 22,
     gender: 'male',
     schedule: 100,

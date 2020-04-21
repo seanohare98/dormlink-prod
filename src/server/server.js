@@ -8,8 +8,8 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
 require('./auth/passportConfig');
-const { createHostels } = require('./utils/dataConfig');
-const { hostelInfo } = require('./utils/constants');
+const { createHostels, createUsers } = require('./utils/dataConfig');
+const { hostelInfo, students } = require('./utils/constants');
 const driver = require('./utils/neo4jDriver');
 const db = require('./models');
 const mergedSchema = require('./data/mergedSchema');
@@ -47,6 +47,7 @@ db.sequelize.authenticate().then(() => {
     })
     .then(() => {
       createHostels(hostelInfo);
+      createUsers(students);
     });
 });
 
