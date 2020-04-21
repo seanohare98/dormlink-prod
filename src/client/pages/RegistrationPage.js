@@ -1,23 +1,21 @@
 import React, { useContext } from 'react';
-import { useMutation } from '@apollo/react-hooks';
-import { makeStyles } from '@material-ui/core/styles';
-import Stepper from '@material-ui/core/Stepper';
+import Redirect from 'react-router-dom/es/Redirect';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
+import Stepper from '@material-ui/core/Stepper';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { useMutation } from '@apollo/react-hooks';
+import { makeStyles } from '@material-ui/core/styles';
 import useFormFields from '../hooks/useFormFields';
 import { UserContext } from '../contexts/UserProvider';
 import {
   UPDATE_USER,
-  CREATE_USER,
-  CREATE_RANKING,
-  MERGE_STUDENT_RANKINGS,
-  MERGE_RANKING_TRAIT
+  MERGE_STUDENT,
+  ADD_TRAIT_STUDENT_TRAITS
 } from '../utils/gqlQueries';
 import BasicInfo from '../components/BasicInfo';
 import Preferences from '../components/Preferences';
-import Redirect from 'react-router-dom/es/Redirect';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -63,11 +61,9 @@ function getStepContent(step) {
 export default function RegistrationPage() {
   const classes = useStyles();
   const steps = getSteps();
-  const [updateUser] = useMutation(UPDATE_USER);
-  const [MergeStudent] = useMutation(CREATE_USER);
-  const [createRanking] = useMutation(CREATE_RANKING);
-  const [mergeStudentRankings] = useMutation(MERGE_STUDENT_RANKINGS);
-  const [mergeRankingTrait] = useMutation(MERGE_RANKING_TRAIT);
+  const [UpdateUser] = useMutation(UPDATE_USER);
+  const [MergeStudent] = useMutation(MERGE_STUDENT);
+  const [AddTraitStudentTraits] = useMutation(ADD_TRAIT_STUDENT_TRAITS);
   const [user, setUser] = useContext(UserContext);
   const [activeStep, setActiveStep] = React.useState(0);
   const [redirect, setRedirect] = React.useState(false);
@@ -84,13 +80,13 @@ export default function RegistrationPage() {
   const handleNext = () => setActiveStep(prevActiveStep => prevActiveStep + 1);
   const handleBack = () => setActiveStep(prevActiveStep => prevActiveStep - 1);
   const handleSubmit = () => {
-    updateUser({
+    UpdateUser({
       variables: { sid: user.id, hostel: fieldsFilled.hostel }
     })
       .then(async () => {
         await MergeStudent({
           variables: {
-            sid: Number(user.id),
+            sid: user.id,
             hostel: fieldsFilled.hostel,
             age: fieldsFilled.age,
             gender: fieldsFilled.gender
@@ -98,21 +94,13 @@ export default function RegistrationPage() {
         });
         Object.keys(fieldsFilled).map(async key => {
           if (key !== 'gender' && key !== 'age' && key !== 'hostel')
-            await createRanking({
-              variables: { id: `${user.id}${key}`, rank: fieldsFilled[key] }
+            await AddTraitStudentTraits({
+              variables: {
+                from: { sid: user.id },
+                to: { name: `${key}` },
+                data: { strength: fieldsFilled[key] }
+              }
             });
-          await mergeStudentRankings({
-            variables: {
-              from: { sid: Number(user.id) },
-              to: { id: `${user.id}${key}` }
-            }
-          });
-          await mergeRankingTrait({
-            variables: {
-              from: { id: `${user.id}${key}` },
-              to: { name: key }
-            }
-          });
         });
       })
       .then(() => {

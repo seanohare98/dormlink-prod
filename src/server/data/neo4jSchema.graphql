@@ -1,28 +1,37 @@
 type Student {
-  sid: ID!
+  sid: String!
   name: String
   hostel: String!
   age: Int
   gender: String
+  hasTrait: [HasTrait]
   matched: [Student] @relation(name: "MATCHED", direction: "BOTH")
-  rankings: [Ranking] @relation(name: "RANKS", direction: "OUT")
 }
 
 type Trait {
   name: ID!
-  rankings: [Ranking] @relation(name: "RANKS", direction: "IN")
+  studentTraits: [HasTrait]
 }
 
-type Ranking {
-  id: ID!
-  rank: Int!
-  trait: Trait @relation(name: "RANKS", direction: "OUT")
-  student: Student @relation(name: "RANKS", direction: "IN")
+type HasTrait @relation(name: "HAS_TRAIT") {
+  from: Student
+  to: Trait
+  strength: Int!
 }
 
 type Query {
   studentBySubstring(substring: String): [Student]
     @cypher(
       statement: "MATCH (s:Student) WHERE s.name CONTAINS $substring RETURN s"
+    )
+  similar(sid: String): [Student]
+    @cypher(
+      statement: """
+      MATCH (s1:Student {sid: $sid})-[has1:HAS_TRAIT]->(trait)
+      MATCH (s2:Student)-[has2:HAS_TRAIT]->(trait) WHERE s1<>s2
+      RETURN s2,
+      gds.alpha.similarity.cosine(collect(has1.strength), collect(has2.strength)) AS similarity
+      ORDER BY similarity DESC
+      """
     )
 }

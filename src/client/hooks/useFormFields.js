@@ -7,7 +7,7 @@ export default function useFormFields(init) {
     const { name, value } = event.target;
     fieldsFilled[name] = value;
     setFieldsFilled({ ...fieldsFilled });
-    console.log(fieldsFilled);
+    // console.log(fieldsFilled);
   }
 
   return [fieldsFilled, handleChange];

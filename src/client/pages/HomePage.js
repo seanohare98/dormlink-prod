@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import ProfileData from '../components/ProfileData';
+import ProfileData from '../components/SimilarUserCards';
 
 const Profile = () => {
   return (

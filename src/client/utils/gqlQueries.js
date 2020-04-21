@@ -1,13 +1,12 @@
 import { gql } from 'apollo-boost';
 
 /* example! */
-const USER = gql`
-  {
-    user {
+const SIMILAR = gql`
+  query similar($sid: String!) {
+    similar(sid: $sid) {
       sid
-      firstName
-      lastName
-      email
+      age
+      gender
     }
   }
 `;
@@ -20,9 +19,9 @@ const UPDATE_USER = gql`
 `;
 
 /* create user in neo4j  */
-const CREATE_USER = gql`
+const MERGE_STUDENT = gql`
   mutation MergeStudent(
-    $sid: ID!
+    $sid: String!
     $hostel: String!
     $age: Int
     $gender: String
@@ -33,48 +32,23 @@ const CREATE_USER = gql`
   }
 `;
 
-/* create ranking for neo4j relationship  */
-const CREATE_RANKING = gql`
-  mutation CreateRanking($id: ID!, $rank: Int!) {
-    CreateRanking(id: $id, rank: $rank) {
-      id
-    }
-  }
-`;
-
-/* merge student node with ranking node */
-const MERGE_STUDENT_RANKINGS = gql`
-  mutation MergeStudentRankings($from: _StudentInput!, $to: _RankingInput!) {
-    MergeStudentRankings(from: $from, to: $to) {
+/* add HAS_TRAIT relationship */
+const ADD_TRAIT_STUDENT_TRAITS = gql`
+  mutation AddTraitStudentTraits(
+    $from: _StudentInput!
+    $to: _TraitInput!
+    $data: _HasTraitInput!
+  ) {
+    AddTraitStudentTraits(from: $from, to: $to, data: $data) {
       from {
         sid
       }
       to {
-        id
-      }
-    }
-  }
-`;
-
-/* merge ranking node with personality trait node */
-const MERGE_RANKING_TRAIT = gql`
-  mutation MergeRankingTrait($from: _RankingInput!, $to: _TraitInput!) {
-    MergeRankingTrait(from: $from, to: $to) {
-      from {
-        id
-      }
-      to {
         name
       }
+      strength
     }
   }
 `;
 
-export {
-  USER,
-  UPDATE_USER,
-  CREATE_USER,
-  CREATE_RANKING,
-  MERGE_STUDENT_RANKINGS,
-  MERGE_RANKING_TRAIT
-};
+export { SIMILAR, UPDATE_USER, MERGE_STUDENT, ADD_TRAIT_STUDENT_TRAITS };

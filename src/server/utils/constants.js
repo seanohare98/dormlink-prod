@@ -1,5 +1,58 @@
+const neo4j = require('neo4j-driver');
+
 exports.traits = ['cleanliness', 'participation', 'schedule', 'studious'];
-exports.ranks = [0, 50, 75, 100];
+exports.students = [
+  {
+    hostel: 'PMHC High Block',
+    sid: '1155116400',
+    age: 21,
+    gender: 'male',
+    schedule: 50,
+    studious: 50,
+    cleanliness: 50,
+    participation: 50
+  },
+  {
+    hostel: 'PMHC High Block',
+    sid: '1155116500',
+    age: 21,
+    gender: 'male',
+    schedule: 100,
+    studious: 50,
+    cleanliness: 50,
+    participation: 25
+  },
+  {
+    hostel: 'PMHC High Block',
+    sid: '1155116700',
+    age: 18,
+    gender: 'male',
+    schedule: 25,
+    studious: 25,
+    cleanliness: 100,
+    participation: 50
+  },
+  {
+    hostel: 'PMHC High Block',
+    sid: '1155116800',
+    age: 19,
+    gender: 'male',
+    schedule: 50,
+    studious: 50,
+    cleanliness: 50,
+    participation: 50
+  },
+  {
+    hostel: 'PMHC High Block',
+    sid: '1155116900',
+    age: 22,
+    gender: 'male',
+    schedule: 100,
+    studious: 50,
+    cleanliness: 75,
+    participation: 50
+  }
+];
 exports.hostelInfo = [
   // CC
   { name: 'PMHC High Block', affiliation: 'Chung Chi' },
