@@ -82,7 +82,7 @@ const UserCard = props => {
               <td>{levels[data.userSid.cleanliness]}</td>
             </tr>
             <tr>
-              <td style={{ width: '50%' }}>Scocial: </td>
+              <td style={{ width: '50%' }}>Social: </td>
               <td>{levels[data.userSid.participation]}</td>
             </tr>
             <tr>

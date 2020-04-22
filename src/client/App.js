@@ -34,7 +34,7 @@ export default function App() {
         <Route
           exact
           path='/error'
-          render={() => <h2>Something Went Wrong.</h2>}
+          render={() => <h2>Error: Something Went Wrong.</h2>}
         />
         <Route render={() => <h2>404 Page Not Found.</h2>} />
       </Switch>
