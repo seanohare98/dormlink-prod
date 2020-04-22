@@ -70,7 +70,7 @@ export default function RegistrationPage() {
   const [fieldsFilled, updateFields] = useFormFields({
     gender: 'female',
     age: 18,
-    hostel: '',
+    hostel: 'PMHC High Block',
     schedule: 50,
     cleanliness: 50,
     participation: 50,
@@ -80,6 +80,7 @@ export default function RegistrationPage() {
   const handleNext = () => setActiveStep(prevActiveStep => prevActiveStep + 1);
   const handleBack = () => setActiveStep(prevActiveStep => prevActiveStep - 1);
   const handleSubmit = () => {
+    console.log(fieldsFilled);
     UpdateUser({
       variables: {
         sid: user.sid,

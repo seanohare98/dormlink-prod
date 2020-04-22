@@ -9,6 +9,7 @@ import HomePage from './pages/HomePage';
 import Registration from './pages/RegistrationPage';
 import LandingPage from './pages/LandingPage';
 import ProfilePage from './pages/ProfilePage';
+import AboutPage from './pages/AboutUs';
 
 export default function App() {
   const [user, setUser] = useContext(UserContext);
@@ -19,6 +20,7 @@ export default function App() {
     <Router history={history}>
       <Route path='/' component={NavBar} />
       <Switch>
+        <Route exact path='/about' component={AboutPage} />
         {!user.isComplete && (
           <PrivateRoute exact path='/register' component={Registration} />
         )}

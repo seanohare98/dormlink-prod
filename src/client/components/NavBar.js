@@ -19,6 +19,7 @@ import { UserContext } from '../contexts/UserProvider';
 import avatar from '../../../public/avatar.jpg';
 import Redirect from 'react-router-dom/es/Redirect';
 import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 const transparentAppBar = withStyles({
   root: {
@@ -134,6 +135,9 @@ export default function NavBar() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
+        <Button className={classes.title} variant='h6' href='/about'>
+          About Us
+        </Button>
         <IconButton color='inherit'>
           <Badge badgeContent={user.messages} color='secondary'>
             <MailIcon />
@@ -142,9 +146,13 @@ export default function NavBar() {
         <p>Messages</p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton color='inherit'>
+        {user.isComplete ? (
+          <Link to='/profile'>
+            <Avatar classes={{ root: classes.avatarRoot }} src={avatar} />
+          </Link>
+        ) : (
           <AccountCircle />
-        </IconButton>
+        )}
         <p>Profile</p>
       </MenuItem>
     </Menu>
@@ -154,9 +162,9 @@ export default function NavBar() {
     <div className={classes.grow}>
       <transparentAppBar position='static'>
         <Toolbar>
-          <Typography className={classes.title} variant='h6' noWrap>
+          <Button className={classes.title} variant='h6' href='/'>
             DormLink
-          </Typography>
+          </Button>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -172,6 +180,7 @@ export default function NavBar() {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
+            <Button href='/about'>About Us</Button>
             <IconButton color='inherit'>
               <Badge badgeContent={user.messages} color='secondary'>
                 <MailIcon />
