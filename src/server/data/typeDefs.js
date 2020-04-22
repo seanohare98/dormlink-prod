@@ -5,7 +5,11 @@ const typeDefs = gql`
     sid: ID!
     firstName: String!
     lastName: String!
-    email: String!
+    email: String
+    schedule: Int
+    cleanliness: Int
+    participation: Int
+    studious: Int
     hostel: Hostel
     isComplete: Boolean!
   }
@@ -15,13 +19,22 @@ const typeDefs = gql`
     users: [User]
   }
   type Query {
-    user(sid: ID): User
+    user: User
+    userSid(sid: ID!): User
+    usersHostel: [User]
     users: [User!]!
     hostel(id: ID!): Hostel
     hostels: [Hostel!]!
   }
   type Mutation {
-    updateUser(sid: ID!, hostel: ID!): Int
+    updateUser(
+      sid: ID!
+      hostel: ID
+      schedule: Int
+      cleanliness: Int
+      participation: Int
+      studious: Int
+    ): Int
     deleteUser(sid: ID!): Int
   }
 `;

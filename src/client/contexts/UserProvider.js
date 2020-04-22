@@ -4,9 +4,9 @@ const UserContext = createContext([{}, () => {}]);
 const UserConsumer = UserContext.Consumer;
 const useUser = () => React.useContext(UserContext);
 
-const UserProvider = ({ children }) => {
+const UserProvider = props => {
   const [state, setState] = useState({ loading: true });
-
+  console.log(state);
   useEffect(() => {
     fetch('/auth/user')
       .then(res => res.json())
@@ -17,11 +17,11 @@ const UserProvider = ({ children }) => {
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  }, [state.isComplete]);
 
   return (
     <UserContext.Provider value={[state, setState]}>
-      {children}
+      {props.children}
     </UserContext.Provider>
   );
 };

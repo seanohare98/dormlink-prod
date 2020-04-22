@@ -1,5 +1,18 @@
 import { gql } from 'apollo-boost';
 
+const USER_SID = gql`
+  query userSid($sid: ID!) {
+    userSid(sid: $sid) {
+      firstName
+      lastName
+      schedule
+      studious
+      cleanliness
+      participation
+    }
+  }
+`;
+
 /* example! */
 const SIMILAR = gql`
   query similar($sid: String!) {
@@ -13,8 +26,22 @@ const SIMILAR = gql`
 
 /* update user during registration by assigning hostel  */
 const UPDATE_USER = gql`
-  mutation updateUser($sid: ID!, $hostel: ID!) {
-    updateUser(sid: $sid, hostel: $hostel)
+  mutation updateUser(
+    $sid: ID!
+    $hostel: ID
+    $schedule: Int
+    $cleanliness: Int
+    $studious: Int
+    $participation: Int
+  ) {
+    updateUser(
+      sid: $sid
+      hostel: $hostel
+      schedule: $schedule
+      cleanliness: $cleanliness
+      studious: $studious
+      participation: $participation
+    )
   }
 `;
 
@@ -51,4 +78,10 @@ const ADD_TRAIT_STUDENT_TRAITS = gql`
   }
 `;
 
-export { SIMILAR, UPDATE_USER, MERGE_STUDENT, ADD_TRAIT_STUDENT_TRAITS };
+export {
+  USER_SID,
+  SIMILAR,
+  UPDATE_USER,
+  MERGE_STUDENT,
+  ADD_TRAIT_STUDENT_TRAITS
+};

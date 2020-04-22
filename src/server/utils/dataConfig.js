@@ -14,6 +14,10 @@ exports.createUsers = userInfo => {
       firstName: user.first,
       lastName: user.last,
       hostelId: user.hostel,
+      schedule: user.schedule,
+      participation: user.participation,
+      cleanliness: user.cleanliness,
+      studious: user.studious,
       isComplete: true
     });
   });

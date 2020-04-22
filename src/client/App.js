@@ -8,6 +8,7 @@ import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
 import Registration from './pages/RegistrationPage';
 import LandingPage from './pages/LandingPage';
+import ProfilePage from './pages/ProfilePage';
 
 export default function App() {
   const [user, setUser] = useContext(UserContext);
@@ -18,16 +19,22 @@ export default function App() {
     <Router history={history}>
       <Route path='/' component={NavBar} />
       <Switch>
-        {!user.complete && (
+        {!user.isComplete && (
           <PrivateRoute exact path='/register' component={Registration} />
         )}
+        <PrivateRoute exact path='/profile' component={ProfilePage} />
         <PrivateRoute
           exact
           path='/'
           component={HomePage}
           alternate={LandingPage}
         />
-        <Route render={() => <h2>404 Sorry, no page found</h2>} />
+        <Route
+          exact
+          path='/error'
+          render={() => <h2>Something Went Wrong.</h2>}
+        />
+        <Route render={() => <h2>404 Page Not Found.</h2>} />
       </Switch>
     </Router>
   );

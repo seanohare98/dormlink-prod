@@ -19,6 +19,22 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: true
       },
+      schedule: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+      },
+      studious: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+      },
+      participation: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+      },
+      cleanliness: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+      },
       isComplete: {
         type: DataTypes.BOOLEAN,
         allowNull: false

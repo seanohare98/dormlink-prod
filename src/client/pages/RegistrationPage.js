@@ -81,12 +81,19 @@ export default function RegistrationPage() {
   const handleBack = () => setActiveStep(prevActiveStep => prevActiveStep - 1);
   const handleSubmit = () => {
     UpdateUser({
-      variables: { sid: user.id, hostel: fieldsFilled.hostel }
+      variables: {
+        sid: user.sid,
+        hostel: fieldsFilled.hostel,
+        schedule: fieldsFilled.schedule,
+        cleanliness: fieldsFilled.cleanliness,
+        participation: fieldsFilled.participation,
+        studious: fieldsFilled.studious
+      }
     })
       .then(async () => {
         await MergeStudent({
           variables: {
-            sid: user.id,
+            sid: user.sid,
             hostel: fieldsFilled.hostel,
             age: fieldsFilled.age,
             gender: fieldsFilled.gender
@@ -96,7 +103,7 @@ export default function RegistrationPage() {
           if (key !== 'gender' && key !== 'age' && key !== 'hostel')
             await AddTraitStudentTraits({
               variables: {
-                from: { sid: user.id },
+                from: { sid: user.sid },
                 to: { name: `${key}` },
                 data: { strength: fieldsFilled[key] }
               }
