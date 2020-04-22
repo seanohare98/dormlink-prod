@@ -1,0 +1,22 @@
+
+.about-section {
+text-align: center;
+padding: 25px;
+color: white;
+background-color: rgba(94, 93, 93, 0.507);
+font-size: larger;
+}
+
+.our-team {
+    text-align: left;
+}
+
+.box {
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.teammate-information {
+    padding: 2px;
+    line-height: 15px;
+}
