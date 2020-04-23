@@ -16,6 +16,8 @@ import {
 } from '../utils/gqlQueries';
 import BasicInfo from '../components/BasicInfo';
 import Preferences from '../components/Preferences';
+import { useQuery } from '@apollo/react-hooks';
+import { STUDENT } from '../utils/gqlQueries';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -58,7 +60,42 @@ function getStepContent(step) {
   }
 }
 
-export default function RegistrationPage() {
+const defaultFormFields = {
+  gender: 'female',
+  age: 18,
+  hostel: 'PMHC High Block',
+  schedule: 50,
+  cleanliness: 50,
+  participation: 50,
+  studious: 50
+};
+
+export function EditPage() {
+  const [user, setUser] = useContext(UserContext);
+  const { data, error, loading } = useQuery(STUDENT, {
+    variables: { sid: user.sid.toString() }
+  });
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+  if (!data) return <p>Not found</p>;
+
+  return (
+    <RegistrationPage
+      formFields={{
+        gender: data.Student[0].gender,
+        age: data.Student[0].age,
+        hostel: data.Student[0].hostel,
+        schedule: user.schedule,
+        cleanliness: user.cleanliness,
+        participation: user.participation,
+        studious: user.studious
+      }}
+    />
+  );
+}
+
+export default function RegistrationPage(props) {
   const classes = useStyles();
   const steps = getSteps();
   const [UpdateUser] = useMutation(UPDATE_USER);
@@ -67,15 +104,9 @@ export default function RegistrationPage() {
   const [user, setUser] = useContext(UserContext);
   const [activeStep, setActiveStep] = React.useState(0);
   const [redirect, setRedirect] = React.useState(false);
-  const [fieldsFilled, updateFields] = useFormFields({
-    gender: 'female',
-    age: 18,
-    hostel: 'PMHC High Block',
-    schedule: 50,
-    cleanliness: 50,
-    participation: 50,
-    studious: 50
-  });
+  const [fieldsFilled, updateFields] = useFormFields(
+    props.formFields ? props.formFields : defaultFormFields
+  );
 
   const handleNext = () => setActiveStep(prevActiveStep => prevActiveStep + 1);
   const handleBack = () => setActiveStep(prevActiveStep => prevActiveStep - 1);

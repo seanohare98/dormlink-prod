@@ -1,5 +1,15 @@
 import { gql } from 'apollo-boost';
 
+const STUDENT = gql`
+  query Student($sid: String!) {
+    Student(sid: $sid) {
+      hostel
+      age
+      gender
+    }
+  }
+`;
+
 const USER_SID = gql`
   query userSid($sid: ID!) {
     userSid(sid: $sid) {
@@ -79,6 +89,7 @@ const ADD_TRAIT_STUDENT_TRAITS = gql`
 `;
 
 export {
+  STUDENT,
   USER_SID,
   SIMILAR,
   UPDATE_USER,

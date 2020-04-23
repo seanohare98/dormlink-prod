@@ -7,6 +7,7 @@ import PrivateRoute from './utils/PrivateRoute';
 import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
 import Registration from './pages/RegistrationPage';
+import { EditPage } from './pages/RegistrationPage';
 import LandingPage from './pages/LandingPage';
 import ProfilePage from './pages/ProfilePage';
 import AboutPage from './pages/AboutUs';
@@ -25,6 +26,7 @@ export default function App() {
           <PrivateRoute exact path='/register' component={Registration} />
         )}
         <PrivateRoute exact path='/profile' component={ProfilePage} />
+        <PrivateRoute exact path='/edit' component={EditPage} />
         <PrivateRoute
           exact
           path='/'
