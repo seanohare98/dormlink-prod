@@ -4,6 +4,7 @@ import charlie from '../../../public/charlie.jpg';
 import polik from '../../../public/polik.jpg';
 import kilong from '../../../public/kilong.jpg';
 import leon from '../../../public/leon.jpg';
+import algo from '../../../public/algo.png';
 
 const AboutPage = () => {
   return (
@@ -11,9 +12,10 @@ const AboutPage = () => {
       <div className='about-section'>
         <h1>About Us Page</h1>
         <p>
-          Dormlink is a platform for CUHK student to find and match with their
-          best potential roommates
+          Find your ideal roommate using our cosine similarity algorithm based
+          off common roommate personality traits
         </p>
+        <img src={algo} />
         <p>built by group 39: CSCI3100 Spring 2020</p>
         <p>
           <a className='button' href='https://github.com/seanohare98/dormlink'>

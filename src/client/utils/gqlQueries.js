@@ -25,12 +25,18 @@ const USER_SID = gql`
 
 /* example! */
 const SIMILAR = gql`
-  query similar($sid: String!) {
-    similar(sid: $sid) {
+  query similar($sid: String, $hostel: String) {
+    similar(sid: $sid, hostel: $hostel) {
       sid
       age
       gender
     }
+  }
+`;
+
+const DELETE_USER = gql`
+  mutation deleteUser($sid: ID!) {
+    deleteUser(sid: $sid)
   }
 `;
 
@@ -93,6 +99,7 @@ export {
   USER_SID,
   SIMILAR,
   UPDATE_USER,
+  DELETE_USER,
   MERGE_STUDENT,
   ADD_TRAIT_STUDENT_TRAITS
 };

@@ -11,13 +11,13 @@ import useFormFields from '../hooks/useFormFields';
 import { UserContext } from '../contexts/UserProvider';
 import {
   UPDATE_USER,
+  STUDENT,
   MERGE_STUDENT,
   ADD_TRAIT_STUDENT_TRAITS
 } from '../utils/gqlQueries';
 import BasicInfo from '../components/BasicInfo';
 import Preferences from '../components/Preferences';
 import { useQuery } from '@apollo/react-hooks';
-import { STUDENT } from '../utils/gqlQueries';
 import Alert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles(theme => ({
@@ -95,7 +95,7 @@ export function EditPage() {
   );
 }
 
-export default function RegistrationPage(props) {
+export function RegistrationPage(props) {
   const classes = useStyles();
   const steps = getSteps();
   const [UpdateUser] = useMutation(UPDATE_USER);
@@ -111,7 +111,7 @@ export default function RegistrationPage(props) {
 
   const handleNext = () => {
     if (
-      activeStep != 0 ||
+      activeStep !== 0 ||
       (fieldsFilled.hostel && fieldsFilled.age && fieldsFilled.gender)
     ) {
       setMissingField(false);
@@ -153,11 +153,10 @@ export default function RegistrationPage(props) {
             });
         });
       })
-      .then(() => {
+      .then(async () => {
         setRedirect(true);
       });
   };
-
   if (redirect === true) return <Redirect to='/' />;
 
   return (

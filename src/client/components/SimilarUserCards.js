@@ -100,7 +100,7 @@ const UserCard = props => {
           </Button>
         </CardActions>
       </Card>
-      <div style={{ height: '20px', width: '100%', clear: 'both' }}></div>
+      <div style={{ height: '20px', width: '100%', clear: 'both' }} />
     </div>
   );
 };
@@ -108,7 +108,7 @@ const UserCard = props => {
 export default () => {
   const [user, setUser] = useContext(UserContext);
   const { loading, error, data } = useQuery(SIMILAR, {
-    variables: { sid: user.sid }
+    variables: { sid: user.sid, hostel: user.hostelId }
   });
 
   if (loading) return <p>Loading...</p>;

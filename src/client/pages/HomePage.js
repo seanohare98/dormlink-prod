@@ -6,7 +6,7 @@ import Redirect from 'react-router-dom/es/Redirect';
 const Profile = () => {
   const [user, setUser] = useContext(UserContext);
 
-  if (!user.isComplete) return <Redirect to='/register' />;
+  if (!user.isComplete) setUser({ update: true });
 
   return (
     <div>

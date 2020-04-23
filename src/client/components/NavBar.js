@@ -135,9 +135,16 @@ export default function NavBar() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <Button className={classes.title} variant='h6' href='/about'>
-          About Us
-        </Button>
+        {user.isComplete ? (
+          <Button className={classes.title} variant='h6' href='/about'>
+            About Us
+          </Button>
+        ) : (
+          <Button className={classes.title} variant='h6' href='/register'>
+            About Us
+          </Button>
+        )}
+
         <IconButton color='inherit'>
           <Badge badgeContent={user.messages} color='secondary'>
             <MailIcon />
@@ -162,9 +169,16 @@ export default function NavBar() {
     <div className={classes.grow}>
       <transparentAppBar position='static'>
         <Toolbar>
-          <Button className={classes.title} variant='h6' href='/'>
-            DormLink
-          </Button>
+          {user.isComplete ? (
+            <Button className={classes.title} variant='h6' href='/'>
+              DormLink
+            </Button>
+          ) : (
+            <Button className={classes.title} variant='h6' href='/register'>
+              DormLink
+            </Button>
+          )}
+
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />

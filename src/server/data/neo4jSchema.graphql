@@ -24,11 +24,11 @@ type Query {
     @cypher(
       statement: "MATCH (s:Student) WHERE s.name CONTAINS $substring RETURN s"
     )
-  similar(sid: String): [Student]
+  similar(sid: String, hostel: String): [Student]
     @cypher(
       statement: """
       MATCH (s1:Student {sid: $sid})-[has1:HAS_TRAIT]->(trait)
-      MATCH (s2:Student)-[has2:HAS_TRAIT]->(trait) WHERE s1<>s2
+      MATCH (s2:Student {hostel: $hostel})-[has2:HAS_TRAIT]->(trait) WHERE s1<>s2
       RETURN s2,
       gds.alpha.similarity.cosine(collect(has1.strength), collect(has2.strength)) AS similarity
       ORDER BY similarity DESC

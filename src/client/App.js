@@ -3,14 +3,14 @@ import { Router, Route, Switch } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import history from './utils/history';
 import { UserContext } from './contexts/UserProvider';
-import PrivateRoute from './utils/PrivateRoute';
+import { PrivateRoute, CompleteRoute } from './utils/PrivateRoute';
 import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
-import Registration from './pages/RegistrationPage';
-import { EditPage } from './pages/RegistrationPage';
+import { EditPage, RegistrationPage } from './pages/RegistrationPage';
 import LandingPage from './pages/LandingPage';
 import ProfilePage from './pages/ProfilePage';
 import AboutPage from './pages/AboutUs';
+import { Home } from '@material-ui/icons';
 
 export default function App() {
   const [user, setUser] = useContext(UserContext);
@@ -23,16 +23,11 @@ export default function App() {
       <Switch>
         <Route exact path='/about' component={AboutPage} />
         {!user.isComplete && (
-          <PrivateRoute exact path='/register' component={Registration} />
+          <PrivateRoute exact path='/register' component={RegistrationPage} />
         )}
         <PrivateRoute exact path='/profile' component={ProfilePage} />
         <PrivateRoute exact path='/edit' component={EditPage} />
-        <PrivateRoute
-          exact
-          path='/'
-          component={HomePage}
-          alternate={LandingPage}
-        />
+        <PrivateRoute exact path='/' component={HomePage} />
         <Route
           exact
           path='/error'

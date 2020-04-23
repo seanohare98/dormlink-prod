@@ -59,6 +59,18 @@ exports.students = [
     studious: 50,
     cleanliness: 75,
     participation: 50
+  },
+  {
+    hostel: 'PMHC Low Block',
+    sid: '99999999',
+    first: 'mike',
+    last: 'isa-diot',
+    age: 22,
+    gender: 'male',
+    schedule: 100,
+    studious: 50,
+    cleanliness: 75,
+    participation: 50
   }
 ];
 exports.hostelInfo = [

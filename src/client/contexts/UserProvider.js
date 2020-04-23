@@ -17,7 +17,7 @@ const UserProvider = props => {
       .catch(err => {
         console.log(err);
       });
-  }, [state.isComplete]);
+  }, [state.update]);
 
   return (
     <UserContext.Provider value={[state, setState]}>
