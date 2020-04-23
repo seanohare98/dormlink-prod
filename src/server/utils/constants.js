@@ -4,6 +4,8 @@ exports.students = [
     hostel: 'PMHC High Block',
     sid: '1155116400',
     first: 'john',
+    email: 'annie@link.cuhk.edu.hk',
+
     last: 'doe',
     age: 21,
     gender: 'male',
@@ -18,6 +20,8 @@ exports.students = [
     first: 'jane',
     last: 'doe',
     age: 21,
+    email: 'annie@link.cuhk.edu.hk',
+
     gender: 'female',
     schedule: 100,
     studious: 50,
@@ -29,6 +33,7 @@ exports.students = [
     sid: '1155116700',
     first: 'annie',
     last: 'price',
+    email: 'annie@link.cuhk.edu.hk',
     age: 18,
     gender: 'male',
     schedule: 25,
@@ -42,6 +47,7 @@ exports.students = [
     first: 'jack',
     last: 'son',
     age: 19,
+    email: 'test@link.cuhk.edu.hk',
     gender: 'male',
     schedule: 50,
     studious: 50,
@@ -54,6 +60,8 @@ exports.students = [
     first: 'mike',
     last: 'guy',
     age: 22,
+    email: 'annie@link.cuhk.edu.hk',
+
     gender: 'male',
     schedule: 100,
     studious: 50,
@@ -66,6 +74,8 @@ exports.students = [
     first: 'mike',
     last: 'isa-diot',
     age: 22,
+    email: 'annie@link.cuhk.edu.hk',
+
     gender: 'male',
     schedule: 100,
     studious: 50,

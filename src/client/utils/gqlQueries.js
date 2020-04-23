@@ -79,14 +79,56 @@ const MERGE_STUDENT = gql`
   }
 `;
 
+const UPDATE_STUDENT = gql`
+  mutation UpdateStudent(
+    $sid: String!
+    $hostel: String!
+    $age: Int
+    $gender: String
+  ) {
+    UpdateStudent(sid: $sid, hostel: $hostel, age: $age, gender: $gender) {
+      sid
+    }
+  }
+`;
 /* add HAS_TRAIT relationship */
 const ADD_TRAIT_STUDENT_TRAITS = gql`
-  mutation AddTraitStudentTraits(
+  mutation UpdateTraitStudentTraits(
     $from: _StudentInput!
     $to: _TraitInput!
     $data: _HasTraitInput!
   ) {
     AddTraitStudentTraits(from: $from, to: $to, data: $data) {
+      from {
+        sid
+      }
+      to {
+        name
+      }
+      strength
+    }
+  }
+`;
+
+const DELETE_STUDENT = gql`
+  mutation DeleteStudent($sid: String!) {
+    DeleteStudent(sid: $sid)
+  }
+`;
+
+const UPDATE_AGAIN = gql`
+  mutation updateAgain($sid: String!) {
+    updateAgain(sid: $sid)
+  }
+`;
+
+const UPDATE_TRAIT_STUDENT_TRAITS = gql`
+  mutation UpdateTraitStudentTraits(
+    $from: _StudentInput!
+    $to: _TraitInput!
+    $data: _HasTraitInput!
+  ) {
+    UpdateTraitStudentTraits(from: $from, to: $to, data: $data) {
       from {
         sid
       }
@@ -105,5 +147,9 @@ export {
   UPDATE_USER,
   DELETE_USER,
   MERGE_STUDENT,
-  ADD_TRAIT_STUDENT_TRAITS
+  DELETE_STUDENT,
+  UPDATE_STUDENT,
+  UPDATE_TRAIT_STUDENT_TRAITS,
+  ADD_TRAIT_STUDENT_TRAITS,
+  UPDATE_AGAIN
 };

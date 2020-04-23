@@ -35,3 +35,10 @@ type Query {
       """
     )
 }
+
+type Mutation {
+  updateAgain(sid: String): Int
+    @cypher(
+      statement: "Match (s1:Student {sid: $sid}) DETACH DELETE s1 RETURN s1"
+    )
+}

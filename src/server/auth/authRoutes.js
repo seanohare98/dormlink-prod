@@ -2,6 +2,7 @@ const router = require('express').Router();
 const passport = require('passport');
 const { isAuthenticated } = require('../utils/common');
 const User = require('../models').user;
+const driver = require('../utils/neo4jDriver');
 
 router.get(
   '/azure',
