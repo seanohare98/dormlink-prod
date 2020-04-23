@@ -31,6 +31,21 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const levels = {
+  0: '⭐',
+  25: '⭐⭐',
+  50: '⭐⭐⭐',
+  75: '⭐⭐⭐⭐',
+  100: '⭐⭐⭐⭐⭐'
+};
+
+const keyMaps = {
+  schedule: 'Night Owl',
+  cleanliness: 'Cleanliness',
+  participation: 'Social',
+  studious: 'Studious'
+};
+
 const Profile = () => {
   const [user, setUser] = useContext(UserContext);
   const [deleteUser] = useMutation(DELETE_USER);
@@ -78,8 +93,19 @@ const Profile = () => {
                   <FaceIcon />
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary={key} />
-              <ListItemText primary={user[key]} />
+              <ListItemText
+                primary={keyMaps[key] ? keyMaps[key] : key}
+                style={{ width: '20%' }}
+              />
+              <ListItemText
+                primary={
+                  user[key]
+                    ? levels[user[key]]
+                      ? levels[user[key]]
+                      : user[key]
+                    : 'Unkwon'
+                }
+              />
               <ListItemSecondaryAction>
                 <IconButton edge='end' aria-label='delete' href='/edit'>
                   <EditIcon />

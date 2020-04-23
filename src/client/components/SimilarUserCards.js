@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { SIMILAR, USER_SID } from '../utils/gqlQueries';
 import { UserContext } from '../contexts/UserProvider';
@@ -21,6 +21,7 @@ import { Divider } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import { red } from '@material-ui/core/colors';
 import avatar from '../../../public/avatar.jpg';
+import Redirect from 'react-router-dom/es/Redirect';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -50,9 +51,20 @@ const levels = {
 
 const UserCard = props => {
   const classes = useStyles();
+  const [redirect, setRedirect] = useState(false);
+  const [redirectUrl, setRedirectUrl] = useState('');
   const { data, error, loading } = useQuery(USER_SID, {
     variables: { sid: props.sid }
   });
+
+  if (redirect) {
+    return <Redirect to={redirectUrl} />;
+  }
+
+  const handleClickViewProfile = () => {
+    setRedirect(true);
+    setRedirectUrl('/user/' + props.sid);
+  };
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
@@ -92,7 +104,7 @@ const UserCard = props => {
           </table>
         </CardContent>
         <CardActions>
-          <Button size='small' color='primary'>
+          <Button size='small' color='primary' onClick={handleClickViewProfile}>
             {'View ' + data.userSid.firstName + "'s Profile"}
           </Button>
           <Button size='small' color='primary'>

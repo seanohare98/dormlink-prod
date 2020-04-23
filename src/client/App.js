@@ -10,6 +10,7 @@ import { EditPage, RegistrationPage } from './pages/RegistrationPage';
 import LandingPage from './pages/LandingPage';
 import ProfilePage from './pages/ProfilePage';
 import AboutPage from './pages/AboutUs';
+import UserPage from './pages/UserPage';
 import { Home } from '@material-ui/icons';
 
 export default function App() {
@@ -28,6 +29,9 @@ export default function App() {
         <PrivateRoute exact path='/profile' component={ProfilePage} />
         <PrivateRoute exact path='/edit' component={EditPage} />
         <PrivateRoute exact path='/' component={HomePage} />
+        <Route path='/user/:sid'>
+          <UserPage />
+        </Route>
         <Route
           exact
           path='/error'

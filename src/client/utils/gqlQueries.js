@@ -15,10 +15,14 @@ const USER_SID = gql`
     userSid(sid: $sid) {
       firstName
       lastName
+      email
       schedule
       studious
       cleanliness
       participation
+      hostel {
+        id
+      }
     }
   }
 `;
