@@ -179,19 +179,7 @@ export default function NavBar() {
             </Button>
           )}
 
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder='Search Roommates...'
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
+          <Typography>Roommates appears in desecending similarity</Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <Button href='/about'>About Us</Button>

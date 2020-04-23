@@ -91,6 +91,7 @@ export function EditPage() {
         participation: user.participation,
         studious: user.studious
       }}
+      isEditing={true}
     />
   );
 }
@@ -123,39 +124,54 @@ export function RegistrationPage(props) {
   const handleBack = () => setActiveStep(prevActiveStep => prevActiveStep - 1);
   const handleSubmit = () => {
     console.log(fieldsFilled);
-    UpdateUser({
-      variables: {
-        sid: user.sid,
-        hostel: fieldsFilled.hostel,
-        schedule: fieldsFilled.schedule,
-        cleanliness: fieldsFilled.cleanliness,
-        participation: fieldsFilled.participation,
-        studious: fieldsFilled.studious
-      }
-    })
-      .then(async () => {
-        await MergeStudent({
-          variables: {
-            sid: user.sid,
-            hostel: fieldsFilled.hostel,
-            age: fieldsFilled.age,
-            gender: fieldsFilled.gender
-          }
-        });
-        Object.keys(fieldsFilled).map(async key => {
-          if (key !== 'gender' && key !== 'age' && key !== 'hostel')
-            await AddTraitStudentTraits({
-              variables: {
-                from: { sid: user.sid },
-                to: { name: `${key}` },
-                data: { strength: fieldsFilled[key] }
-              }
-            });
-        });
-      })
-      .then(async () => {
+    if (props.isEditing) {
+      UpdateUser({
+        variables: {
+          sid: user.sid,
+          hostel: fieldsFilled.hostel,
+          schedule: fieldsFilled.schedule,
+          cleanliness: fieldsFilled.cleanliness,
+          participation: fieldsFilled.participation,
+          studious: fieldsFilled.studious
+        }
+      }).then(async () => {
         setRedirect(true);
       });
+    } else {
+      UpdateUser({
+        variables: {
+          sid: user.sid,
+          hostel: fieldsFilled.hostel,
+          schedule: fieldsFilled.schedule,
+          cleanliness: fieldsFilled.cleanliness,
+          participation: fieldsFilled.participation,
+          studious: fieldsFilled.studious
+        }
+      })
+        .then(async () => {
+          await MergeStudent({
+            variables: {
+              sid: user.sid,
+              hostel: fieldsFilled.hostel,
+              age: fieldsFilled.age,
+              gender: fieldsFilled.gender
+            }
+          });
+          Object.keys(fieldsFilled).map(async key => {
+            if (key !== 'gender' && key !== 'age' && key !== 'hostel')
+              await AddTraitStudentTraits({
+                variables: {
+                  from: { sid: user.sid },
+                  to: { name: `${key}` },
+                  data: { strength: fieldsFilled[key] }
+                }
+              });
+          });
+        })
+        .then(async () => {
+          setRedirect(true);
+        });
+    }
   };
   if (redirect === true) return <Redirect to='/' />;
 

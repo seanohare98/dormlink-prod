@@ -107,9 +107,6 @@ const UserCard = props => {
           <Button size='small' color='primary' onClick={handleClickViewProfile}>
             {'View ' + data.userSid.firstName + "'s Profile"}
           </Button>
-          <Button size='small' color='primary'>
-            {'Match with ' + data.userSid.firstName}
-          </Button>
         </CardActions>
       </Card>
       <div style={{ height: '20px', width: '100%', clear: 'both' }} />
