@@ -14,6 +14,7 @@ exports.createUsers = userInfo => {
       firstName: user.first,
       lastName: user.last,
       hostelId: user.hostel,
+      email: user.email,
       schedule: user.schedule,
       participation: user.participation,
       cleanliness: user.cleanliness,
