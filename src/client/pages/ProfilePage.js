@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { UserContext } from '../contexts/UserProvider';
+import Redirect from 'react-router-dom/es/Redirect';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -33,6 +34,8 @@ const Profile = () => {
   //
   // return Object.keys(user).map(key => {
   //   return <div>{user[key]}</div>;
+  if (!user.isComplete) return <Redirect to='/register' />;
+
   return (
     <div>
       <Typography variant='h6' classes={{ root: classes.title }}>

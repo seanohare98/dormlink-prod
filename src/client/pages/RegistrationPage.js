@@ -18,6 +18,7 @@ import BasicInfo from '../components/BasicInfo';
 import Preferences from '../components/Preferences';
 import { useQuery } from '@apollo/react-hooks';
 import { STUDENT } from '../utils/gqlQueries';
+import Alert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -61,9 +62,6 @@ function getStepContent(step) {
 }
 
 const defaultFormFields = {
-  gender: 'female',
-  age: 18,
-  hostel: 'PMHC High Block',
   schedule: 50,
   cleanliness: 50,
   participation: 50,
@@ -75,6 +73,8 @@ export function EditPage() {
   const { data, error, loading } = useQuery(STUDENT, {
     variables: { sid: user.sid.toString() }
   });
+
+  if (!user.isComplete) return <Redirect to='/register' />;
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
@@ -102,13 +102,24 @@ export default function RegistrationPage(props) {
   const [MergeStudent] = useMutation(MERGE_STUDENT);
   const [AddTraitStudentTraits] = useMutation(ADD_TRAIT_STUDENT_TRAITS);
   const [user, setUser] = useContext(UserContext);
+  const [missingField, setMissingField] = React.useState(false);
   const [activeStep, setActiveStep] = React.useState(0);
   const [redirect, setRedirect] = React.useState(false);
   const [fieldsFilled, updateFields] = useFormFields(
     props.formFields ? props.formFields : defaultFormFields
   );
 
-  const handleNext = () => setActiveStep(prevActiveStep => prevActiveStep + 1);
+  const handleNext = () => {
+    if (
+      activeStep != 0 ||
+      (fieldsFilled.hostel && fieldsFilled.age && fieldsFilled.gender)
+    ) {
+      setMissingField(false);
+      return setActiveStep(prevActiveStep => prevActiveStep + 1);
+    } else {
+      setMissingField(true);
+    }
+  };
   const handleBack = () => setActiveStep(prevActiveStep => prevActiveStep - 1);
   const handleSubmit = () => {
     console.log(fieldsFilled);
@@ -165,7 +176,15 @@ export default function RegistrationPage(props) {
           <Typography variant='h5'>{getStepContent(activeStep)}</Typography>
         </div>
         {activeStep === 0 && (
-          <BasicInfo value={fieldsFilled} onChange={updateFields} />
+          <BasicInfo
+            value={fieldsFilled}
+            onChange={updateFields}
+            child={
+              missingField && (
+                <Alert severity='error'>Some field are missing.</Alert>
+              )
+            }
+          />
         )}
         {activeStep === 1 && (
           <Preferences value={fieldsFilled} onChange={updateFields} />

@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function RadioButtonsGroup({ value, onChange }) {
+export default function RadioButtonsGroup({ value, onChange, child }) {
   const classes = useStyles();
 
   return (
@@ -123,6 +123,7 @@ export default function RadioButtonsGroup({ value, onChange }) {
           }}
         />
       </FormControl>
+      {child}
     </InfoContainer>
   );
 }
