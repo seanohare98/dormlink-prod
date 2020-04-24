@@ -149,14 +149,6 @@ export default function NavBar() {
           <p>About us</p>
         </Button>
       </MenuItem>
-      <MenuItem>
-        <IconButton color='inherit'>
-          <Badge badgeContent={user.messages} color='secondary'>
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Message</p>
-      </MenuItem>
       {user.isComplete && (
         <MenuItem>
           <Button href='/profile'>
@@ -192,11 +184,6 @@ export default function NavBar() {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <Button href='/about'>About Us</Button>
-            <IconButton color='inherit'>
-              <Badge badgeContent={user.messages} color='secondary'>
-                <MailIcon />
-              </Badge>
-            </IconButton>
             {user.isComplete && (
               <IconButton edge='end' aria-controls={menuId} color='inherit'>
                 <Link to='/profile'>

@@ -23,9 +23,7 @@ export default function App() {
       <Route path='/' component={NavBar} />
       <Switch>
         <Route exact path='/about' component={AboutPage} />
-        {!user.isComplete && (
-          <PrivateRoute exact path='/register' component={RegistrationPage} />
-        )}
+        <PrivateRoute exact path='/register' component={RegistrationPage} />
         <PrivateRoute exact path='/profile' component={ProfilePage} />
         <PrivateRoute exact path='/edit' component={EditPage} />
         <PrivateRoute exact path='/' component={HomePage} />

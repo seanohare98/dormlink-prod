@@ -109,14 +109,14 @@ export function RegistrationPage(props) {
   const [user, setUser] = useContext(UserContext);
   const [missingField, setMissingField] = React.useState(false);
   const [activeStep, setActiveStep] = React.useState(0);
-  const [redirect, setRedirect] = React.useState(false);
+  const [redirect, setRedirect] = React.useState(user.isComplete);
   const [fieldsFilled, updateFields] = useFormFields(
     props.formFields ? props.formFields : defaultFormFields
   );
   const UpdateNeo4jNode = props.isEditing ? UpdateStudent : MergeStudent;
   const UpdateNeo4jEdge = props.isEditing
-    ? AddTraitStudentTraits
-    : UpdateTraitStudentTraits;
+    ? UpdateTraitStudentTraits
+    : AddTraitStudentTraits;
 
   const handleNext = () => {
     if (
@@ -162,14 +162,7 @@ export function RegistrationPage(props) {
         });
       })
       .then(async () => {
-        fetch('/auth/user')
-          .then(res => res.json())
-          .then(res => {
-            setUser(res);
-          })
-          .catch(err => {
-            console.log(err);
-          });
+        setUser({ update: true });
         setRedirect(true);
       });
   };
