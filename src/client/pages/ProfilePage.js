@@ -103,7 +103,7 @@ const Profile = () => {
                     ? levels[user[key]]
                       ? levels[user[key]]
                       : user[key]
-                    : 'Unkwon'
+                    : 'Unknown'
                 }
               />
               <ListItemSecondaryAction>

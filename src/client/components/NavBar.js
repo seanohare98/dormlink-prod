@@ -179,7 +179,6 @@ export default function NavBar() {
             </Button>
           )}
 
-          <Typography>Roommates appears in desecending similarity</Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <Button href='/about'>About Us</Button>
