@@ -12,6 +12,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import FaceIcon from '@material-ui/icons/Face';
 import { makeStyles } from '@material-ui/core/styles';
 import ListItemText from '@material-ui/core/ListItemText';
+import Redirect from 'react-router-dom/es/Redirect';
 
 const fieldsToShow = [
   'email',
@@ -62,6 +63,8 @@ export default () => {
     variables: { sid: sid }
   });
   const classes = useStyles();
+
+  if (!user.isComplete) return <Redirect to='/register' />;
 
   if (sid === user.sid) {
     return <ProfilePage />;

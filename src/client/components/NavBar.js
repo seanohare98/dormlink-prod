@@ -15,6 +15,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import InfoIcon from '@material-ui/icons/Info';
+import HomeIcon from '@material-ui/icons/Home';
 import { UserContext } from '../contexts/UserProvider';
 import avatar from '../../../public/avatar.jpg';
 import Redirect from 'react-router-dom/es/Redirect';
@@ -112,6 +114,14 @@ export default function NavBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const handleAboutMenuOpen = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleHomeMenuOpen = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -134,34 +144,40 @@ export default function NavBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+      <Link to='/'>
+        <MenuItem onClick={handleHomeMenuOpen}>
+          <IconButton>
+            <HomeIcon />
+          </IconButton>
+        </MenuItem>
+      </Link>
+      <Link to='/about'>
+        <MenuItem onClick={handleAboutMenuOpen}>
+          <IconButton>
+            <InfoIcon />
+          </IconButton>
+        </MenuItem>
+      </Link>
       <MenuItem>
-        {user.isComplete ? (
-          <Button className={classes.title} variant='h6' href='/about'>
-            About Us
-          </Button>
-        ) : (
-          <Button className={classes.title} variant='h6' href='/register'>
-            About Us
-          </Button>
-        )}
-
         <IconButton color='inherit'>
           <Badge badgeContent={user.messages} color='secondary'>
             <MailIcon />
           </Badge>
         </IconButton>
-        <p>Messages</p>
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        {user.isComplete ? (
-          <Link to='/profile'>
-            <Avatar classes={{ root: classes.avatarRoot }} src={avatar} />
-          </Link>
-        ) : (
+      {user.isComplete ? (
+        <Link to='/profile' style={{ textDecoration: 'none' }}>
+          <MenuItem onClick={handleProfileMenuOpen}>
+            <IconButton>
+              <AccountCircle />
+            </IconButton>
+          </MenuItem>
+        </Link>
+      ) : (
+        <MenuItem onClick={handleProfileMenuOpen}>
           <AccountCircle />
-        )}
-        <p>Profile</p>
-      </MenuItem>
+        </MenuItem>
+      )}
     </Menu>
   );
 
@@ -169,15 +185,11 @@ export default function NavBar() {
     <div className={classes.grow}>
       <transparentAppBar position='static'>
         <Toolbar>
-          {user.isComplete ? (
+          <div className={classes.sectionDesktop}>
             <Button className={classes.title} variant='h6' href='/'>
               DormLink
             </Button>
-          ) : (
-            <Button className={classes.title} variant='h6' href='/register'>
-              DormLink
-            </Button>
-          )}
+          </div>
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
