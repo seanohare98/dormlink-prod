@@ -17,6 +17,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import InfoIcon from '@material-ui/icons/Info';
 import HomeIcon from '@material-ui/icons/Home';
+import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import { UserContext } from '../contexts/UserProvider';
 import avatar from '../../../public/avatar.jpg';
 import Redirect from 'react-router-dom/es/Redirect';
@@ -102,24 +103,12 @@ export default function NavBar() {
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const handleProfileMenuOpen = event => {
-    setAnchorEl(event.currentTarget);
-  };
-
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
 
   const handleMobileMenuOpen = event => {
     setMobileMoreAnchorEl(event.currentTarget);
-  };
-
-  const handleAboutMenuOpen = event => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleHomeMenuOpen = event => {
-    setAnchorEl(event.currentTarget);
   };
 
   const menuId = 'primary-search-account-menu';
@@ -144,38 +133,48 @@ export default function NavBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <Link to='/'>
-        <MenuItem onClick={handleHomeMenuOpen}>
+      <MenuItem>
+        <Button href='/'>
           <IconButton>
             <HomeIcon />
           </IconButton>
-        </MenuItem>
-      </Link>
-      <Link to='/about'>
-        <MenuItem onClick={handleAboutMenuOpen}>
+          <p>Homepage</p>
+        </Button>
+      </MenuItem>
+      <MenuItem>
+        <Button href='/about'>
           <IconButton>
             <InfoIcon />
           </IconButton>
-        </MenuItem>
-      </Link>
+          <p>About us</p>
+        </Button>
+      </MenuItem>
       <MenuItem>
         <IconButton color='inherit'>
           <Badge badgeContent={user.messages} color='secondary'>
             <MailIcon />
           </Badge>
         </IconButton>
+        <p>Message</p>
       </MenuItem>
-      {user.isComplete ? (
-        <Link to='/profile' style={{ textDecoration: 'none' }}>
-          <MenuItem onClick={handleProfileMenuOpen}>
+      {user.isComplete && (
+        <MenuItem>
+          <Button href='/profile'>
             <IconButton>
               <AccountCircle />
             </IconButton>
-          </MenuItem>
-        </Link>
-      ) : (
-        <MenuItem onClick={handleProfileMenuOpen}>
-          <AccountCircle />
+            <p>Profile</p>
+          </Button>
+        </MenuItem>
+      )}
+      {user.sid && (
+        <MenuItem>
+          <Button href='/auth/logout'>
+            <IconButton>
+              <MeetingRoomIcon />
+            </IconButton>
+            <p>Logout</p>
+          </Button>
         </MenuItem>
       )}
     </Menu>
@@ -190,7 +189,6 @@ export default function NavBar() {
               DormLink
             </Button>
           </div>
-
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <Button href='/about'>About Us</Button>
@@ -199,20 +197,18 @@ export default function NavBar() {
                 <MailIcon />
               </Badge>
             </IconButton>
-            <IconButton
-              edge='end'
-              aria-controls={menuId}
-              onClick={handleProfileMenuOpen}
-              color='inherit'
-            >
-              {user.isComplete ? (
+            {user.isComplete && (
+              <IconButton edge='end' aria-controls={menuId} color='inherit'>
                 <Link to='/profile'>
                   <Avatar classes={{ root: classes.avatarRoot }} src={avatar} />
                 </Link>
-              ) : (
-                <AccountCircle />
-              )}
-            </IconButton>
+              </IconButton>
+            )}
+            {user.sid && (
+              <MenuItem>
+                <Button href='/auth/logout'>Logout</Button>
+              </MenuItem>
+            )}
           </div>
           <div className={classes.sectionMobile}>
             <IconButton

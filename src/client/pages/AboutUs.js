@@ -15,7 +15,10 @@ const AboutPage = () => {
           Find your ideal roommate using our cosine similarity algorithm based
           off common roommate personality traits
         </p>
-        <img src={algo} />
+        <img
+          src={algo}
+          style={{ width: '100%', height: 'auto', maxWidth: '800px' }}
+        />
         <p>built by group 39: CSCI3100 Spring 2020</p>
         <p>
           <a className='button' href='https://github.com/seanohare98/dormlink'>
@@ -81,7 +84,7 @@ const AboutPage = () => {
         <div className='teammate-information'>
           <h2> Wong Ki Long</h2>
           <p style={{ color: 'grey' }}>Team member</p>
-          <p>Major : CS/CE</p>
+          <p>Major : MATH</p>
           <p>
             GitHub : <a href='https://github.com/2013612'>2013612</a>
           </p>
@@ -97,7 +100,7 @@ const AboutPage = () => {
         <div className='teammate-information'>
           <h2> LI Cheuk Man</h2>
           <p style={{ color: 'grey' }}>Team member</p>
-          <p>Major : CS/CE</p>
+          <p>Major : MATH</p>
           <p>
             GitHub : <a href='https://github.com/LCM288'>LCM288</a>
           </p>

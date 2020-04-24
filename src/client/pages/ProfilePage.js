@@ -57,7 +57,12 @@ const Profile = () => {
 
   const classes = useStyles();
   const relevant = Object.keys(user).reduce((object, key) => {
-    if (key !== 'loading' && key !== 'isComplete') {
+    if (
+      key !== 'loading' &&
+      key !== 'isComplete' &&
+      key !== 'createdAt' &&
+      key !== 'updatedAt'
+    ) {
       object[key] = user[key];
     }
     return object;
@@ -66,25 +71,17 @@ const Profile = () => {
   if (!user.isComplete) return <Redirect to='/register' />;
 
   const deleteAccount = () => {
-    deleteUser({ variables: { sid: user.sid } });
-    setUser({});
-    setRedirect(true);
+    if (confirm('Are you sure?')) {
+      deleteUser({ variables: { sid: user.sid } });
+      setUser({});
+      setRedirect(true);
+    }
   };
 
   if (redirect === true) return <Redirect to='/auth/logout' />;
 
   return (
     <div>
-      <Button color='primary' href='/edit'>
-        Edit Account
-      </Button>
-      <Button color='primary' href='/auth/logout'>
-        Logout
-      </Button>
-      <Button onClick={deleteAccount} color='secondary'>
-        Delete Account
-      </Button>
-
       <Typography variant='h6' classes={{ root: classes.title }}>
         Your Profile Summary
       </Typography>
@@ -110,13 +107,18 @@ const Profile = () => {
                     : levels[user[key]]
                 }
               />
-              <ListItemSecondaryAction>
-                <IconButton edge='end' aria-label='delete' href='/edit'>
-                  <EditIcon />
-                </IconButton>
-              </ListItemSecondaryAction>
             </ListItem>
           ))}
+          <ListItem style={{ margin: 'auto' }}>
+            <Button color='primary' href='/edit'>
+              Edit Account
+            </Button>
+          </ListItem>
+          <ListItem style={{ margin: 'auto' }}>
+            <Button onClick={deleteAccount} color='secondary'>
+              Delete Account
+            </Button>
+          </ListItem>
         </List>
       </div>
     </div>
