@@ -68,7 +68,7 @@ const AboutPage = () => {
         <div className='teammate-information'>
           <h2> Kong Chun Hay Leon</h2>
           <p style={{ color: 'grey' }}>Team member</p>
-          <p>Major : CS/CE</p>
+          <p>Major : STAT</p>
           <p>
             GitHub : <a href='https://github.com/kchleon'>kchleon</a>
           </p>
