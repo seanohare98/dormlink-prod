@@ -46,6 +46,10 @@ const keyMaps = {
   studious: 'Studious'
 };
 
+const isNull = obj => {
+  return typeof obj == 'undefined' || obj === null;
+};
+
 const Profile = () => {
   const [user, setUser] = useContext(UserContext);
   const [deleteUser] = useMutation(DELETE_USER);
@@ -94,16 +98,16 @@ const Profile = () => {
                 </Avatar>
               </ListItemAvatar>
               <ListItemText
-                primary={keyMaps[key] ? keyMaps[key] : key}
+                primary={isNull(keyMaps[key]) ? key : keyMaps[key]}
                 style={{ width: '20%' }}
               />
               <ListItemText
                 primary={
-                  user[key]
-                    ? levels[user[key]]
-                      ? levels[user[key]]
-                      : user[key]
-                    : 'Unknown'
+                  isNull(user[key])
+                    ? 'Unknown'
+                    : isNull(levels[user[key]])
+                    ? user[key]
+                    : levels[user[key]]
                 }
               />
               <ListItemSecondaryAction>

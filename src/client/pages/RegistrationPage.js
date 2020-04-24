@@ -13,7 +13,9 @@ import {
   UPDATE_USER,
   STUDENT,
   MERGE_STUDENT,
-  ADD_TRAIT_STUDENT_TRAITS
+  ADD_TRAIT_STUDENT_TRAITS,
+  UPDATE_STUDENT,
+  UPDATE_TRAIT_STUDENT_TRAITS
 } from '../utils/gqlQueries';
 import BasicInfo from '../components/BasicInfo';
 import Preferences from '../components/Preferences';
@@ -102,6 +104,8 @@ export function RegistrationPage(props) {
   const [UpdateUser] = useMutation(UPDATE_USER);
   const [MergeStudent] = useMutation(MERGE_STUDENT);
   const [AddTraitStudentTraits] = useMutation(ADD_TRAIT_STUDENT_TRAITS);
+  const [UpdateStudent] = useMutation(UPDATE_STUDENT);
+  const [UpdateTraitStudentTraits] = useMutation(UPDATE_TRAIT_STUDENT_TRAITS);
   const [user, setUser] = useContext(UserContext);
   const [missingField, setMissingField] = React.useState(false);
   const [activeStep, setActiveStep] = React.useState(0);
@@ -109,6 +113,10 @@ export function RegistrationPage(props) {
   const [fieldsFilled, updateFields] = useFormFields(
     props.formFields ? props.formFields : defaultFormFields
   );
+  const UpdateNeo4jNode = props.isEditing ? UpdateStudent : MergeStudent;
+  const UpdateNeo4jEdge = props.isEditing
+    ? AddTraitStudentTraits
+    : UpdateTraitStudentTraits;
 
   const handleNext = () => {
     if (
@@ -124,54 +132,39 @@ export function RegistrationPage(props) {
   const handleBack = () => setActiveStep(prevActiveStep => prevActiveStep - 1);
   const handleSubmit = () => {
     console.log(fieldsFilled);
-    if (props.isEditing) {
-      UpdateUser({
-        variables: {
-          sid: user.sid,
-          hostel: fieldsFilled.hostel,
-          schedule: fieldsFilled.schedule,
-          cleanliness: fieldsFilled.cleanliness,
-          participation: fieldsFilled.participation,
-          studious: fieldsFilled.studious
-        }
-      }).then(async () => {
+    UpdateUser({
+      variables: {
+        sid: user.sid,
+        hostel: fieldsFilled.hostel,
+        schedule: fieldsFilled.schedule,
+        cleanliness: fieldsFilled.cleanliness,
+        participation: fieldsFilled.participation,
+        studious: fieldsFilled.studious
+      }
+    })
+      .then(async () => {
+        await UpdateNeo4jNode({
+          variables: {
+            sid: user.sid,
+            hostel: fieldsFilled.hostel,
+            age: fieldsFilled.age,
+            gender: fieldsFilled.gender
+          }
+        });
+        Object.keys(fieldsFilled).map(async key => {
+          if (key !== 'gender' && key !== 'age' && key !== 'hostel')
+            await UpdateNeo4jEdge({
+              variables: {
+                from: { sid: user.sid },
+                to: { name: `${key}` },
+                data: { strength: fieldsFilled[key] }
+              }
+            });
+        });
+      })
+      .then(async () => {
         setRedirect(true);
       });
-    } else {
-      UpdateUser({
-        variables: {
-          sid: user.sid,
-          hostel: fieldsFilled.hostel,
-          schedule: fieldsFilled.schedule,
-          cleanliness: fieldsFilled.cleanliness,
-          participation: fieldsFilled.participation,
-          studious: fieldsFilled.studious
-        }
-      })
-        .then(async () => {
-          await MergeStudent({
-            variables: {
-              sid: user.sid,
-              hostel: fieldsFilled.hostel,
-              age: fieldsFilled.age,
-              gender: fieldsFilled.gender
-            }
-          });
-          Object.keys(fieldsFilled).map(async key => {
-            if (key !== 'gender' && key !== 'age' && key !== 'hostel')
-              await AddTraitStudentTraits({
-                variables: {
-                  from: { sid: user.sid },
-                  to: { name: `${key}` },
-                  data: { strength: fieldsFilled[key] }
-                }
-              });
-          });
-        })
-        .then(async () => {
-          setRedirect(true);
-        });
-    }
   };
   if (redirect === true) return <Redirect to='/' />;
 

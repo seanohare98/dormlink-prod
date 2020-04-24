@@ -51,6 +51,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const isNull = obj => {
+  return typeof obj == 'undefined' || obj === null;
+};
+
 export default () => {
   const { sid } = useParams();
   const [user, setUser] = useContext(UserContext);
@@ -89,16 +93,16 @@ export default () => {
               </Avatar>
             </ListItemAvatar>
             <ListItemText
-              primary={keyMaps[key] ? keyMaps[key] : key}
+              primary={isNull(keyMaps[key]) ? key : keyMaps[key]}
               style={{ width: '20%' }}
             />
             <ListItemText
               primary={
-                data.userSid[key]
-                  ? levels[data.userSid[key]]
-                    ? levels[data.userSid[key]]
-                    : data.userSid[key]
-                  : 'Unkwon'
+                isNull(data.userSid[key])
+                  ? 'Unknown'
+                  : isNull(levels[data.userSid[key]])
+                  ? data.userSid[key]
+                  : levels[data.userSid[key]]
               }
             />
           </ListItem>
