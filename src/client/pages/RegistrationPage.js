@@ -131,7 +131,6 @@ export function RegistrationPage(props) {
   };
   const handleBack = () => setActiveStep(prevActiveStep => prevActiveStep - 1);
   const handleSubmit = () => {
-    console.log(fieldsFilled);
     UpdateUser({
       variables: {
         sid: user.sid,
@@ -163,6 +162,14 @@ export function RegistrationPage(props) {
         });
       })
       .then(async () => {
+        fetch('/auth/user')
+          .then(res => res.json())
+          .then(res => {
+            setUser(res);
+          })
+          .catch(err => {
+            console.log(err);
+          });
         setRedirect(true);
       });
   };
