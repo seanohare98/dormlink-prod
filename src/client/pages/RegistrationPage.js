@@ -109,7 +109,9 @@ export function RegistrationPage(props) {
   const [user, setUser] = useContext(UserContext);
   const [missingField, setMissingField] = React.useState(false);
   const [activeStep, setActiveStep] = React.useState(0);
-  const [redirect, setRedirect] = React.useState(user.isComplete);
+  const [redirect, setRedirect] = React.useState(
+    user.isComplete && !props.isEditing
+  );
   const [fieldsFilled, updateFields] = useFormFields(
     props.formFields ? props.formFields : defaultFormFields
   );
@@ -162,11 +164,14 @@ export function RegistrationPage(props) {
         });
       })
       .then(async () => {
-        setUser({ update: true });
         setRedirect(true);
       });
   };
-  if (redirect === true) return <Redirect to='/' />;
+
+  if (redirect === true) {
+    setUser({ ...user, update: true });
+    return <Redirect to='/' />;
+  }
 
   return (
     <div className={classes.root}>
