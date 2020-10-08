@@ -1,48 +1,75 @@
 module.exports = {
-  Hostel: {
+  Dorm: {
     users: parent => parent.getUsers()
   },
   User: {
-    hostel: parent => parent.getHostel()
+    dorm: parent => parent.getDorm(),
+    hobbies: parent => parent.getHobbies()
   },
   Query: {
-    user: (parent, args, { req, db }) => db.user.findByPk(req.user.id),
-    userSid: (parent, { sid }, { db }) => db.user.findByPk(sid),
-    usersHostel: (parent, args, { req, db }) =>
+    user: (parent, args, { req, db }) => db.user.findByPk(req.user.email),
+    userEmail: (parent, { email }, { db }) => db.user.findByPk(email),
+    userDorm: (parent, args, { req, db }) =>
       db.user.findAll({
         where: {
-          hostelId: req.user.hostelId
+          dormName: req.user.dormName
         }
       }),
     users: (parent, args, { db }) => db.user.findAll(),
-    hostel: (parent, { id }, { db }) => db.hostel.findByPk(id),
-    hostels: (parent, args, { db }) => db.hostel.findAll()
+    dormName: (parent, { name }, { db }) => db.dorm.findByPk(name),
+    dorms: (parent, args, { db }) => db.dorm.findAll(),
+    hobbies: (parent, args, { db }) => db.hobby.findAll()
   },
   Mutation: {
+    addUserHobby: async (parent, { hobby }, { req, db }) => {
+      const selectedUser = await db.user.findByPk(req.user.email);
+      const selectedHobby = await db.hobby.findByPk(hobby);
+      selectedUser.addHobby(selectedHobby);
+    },
+    removeUserHobby: async (parent, { hobby }, { req, db }) => {
+      const selectedUser = await db.user.findByPk(req.user.email);
+      const selectedHobby = await db.hobby.findByPk(hobby);
+      selectedUser.removeHobby(selectedHobby);
+    },
     updateUser: (
       parent,
-      { sid, hostel, schedule, cleanliness, participation, studious },
+      {
+        email,
+        dorm,
+        age,
+        gender,
+        classStanding,
+        major,
+        sleepStart,
+        sleepEnd,
+        cleanliness
+      },
       { db }
     ) =>
-      db.user.update(
-        {
-          schedule,
-          cleanliness,
-          participation,
-          studious,
-          hostelId: hostel,
-          isComplete: true
-        },
-        {
-          where: {
-            sid
+      db.user
+        .update(
+          {
+            age,
+            gender,
+            classStanding,
+            major,
+            sleepStart,
+            sleepEnd,
+            cleanliness,
+            dormName: dorm,
+            isComplete: true
+          },
+          {
+            where: {
+              email
+            }
           }
-        }
-      ),
-    deleteUser: (parent, { sid }, { db }) =>
+        )
+        .then(data => data[0]),
+    deleteUser: (parent, { email }, { db }) =>
       db.user.destroy({
         where: {
-          sid
+          email
         }
       })
   }

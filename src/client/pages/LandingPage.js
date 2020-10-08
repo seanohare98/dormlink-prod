@@ -7,6 +7,7 @@ import Logo from '../../../public/logo.png';
 import SignIn from '../../../public/sign-in.png';
 import LoginButton from '../components/LoginButton';
 import { UserContext } from '../contexts/UserProvider';
+
 const LandingContainer = withStyles({
   root: {
     height: '100vh',
@@ -23,9 +24,7 @@ const LandingPage = () => {
         <div id='inner'>
           <img src={Logo} alt='dormlink-logo img' id='logo' />
           <h1 className='landing-header'>Find Your Roommate!</h1>
-          <p className='subtitle'>
-            A social network for CUHK hostel residents!
-          </p>
+          <p className='subtitle'>This shit looks like ass loll</p>
           <LoginButton />
         </div>
         <div id='illustration'>

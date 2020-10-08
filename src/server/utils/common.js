@@ -1,22 +1,19 @@
 exports.validateEmail = profile => {
+  console.log(profile._json);
   return (
     profile &&
     profile._json &&
-    profile._json.preferred_username.match(
-      /^[A-Za-z0-9._%+-]+@link.cuhk.edu.hk$/
-    )
+    profile._json.preferred_username.match(/^[A-Za-z0-9._%+-]+@msu.edu$/)
   );
 };
 
 exports.extractAzureProfile = profile => {
   const { preferred_username: email, name: fullName } = profile._json;
-  const sid = email.match(/[^@]+/)[0];
   const lastName = fullName
     .split(' ')[0]
-    .slice(0, -1)
-    .toLowerCase();
-  const firstName = fullName.slice(fullName.indexOf(' ')).toLowerCase();
-  return { sid, firstName, lastName, email };
+    .slice(0, -1);
+  const firstName = fullName.slice(fullName.indexOf(' '));
+  return { firstName, lastName, email };
 };
 
 exports.isAuthenticated = (req, res, next) => {

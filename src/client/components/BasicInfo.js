@@ -10,7 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { hostelInfo as options } from '../utils/constants';
+import { dorms as options, majors } from '../utils/constants';
 
 const InfoContainer = withStyles({
   root: {
@@ -78,6 +78,38 @@ export default function RadioButtonsGroup({ value, onChange, child }) {
       </FormControl>
       <FormControl component='fieldset' classes={{ root: classes.formControl }}>
         <FormLabel component='legend' classes={{ root: classes.formLabel }}>
+          Class standing
+        </FormLabel>
+        <RadioGroup
+          row
+          name='classStanding'
+          value={value.classStanding}
+          onChange={onChange}
+        >
+          <FormControlLabel
+            value='freshman'
+            control={<Radio color='primary' />}
+            label='Freshman'
+          />
+          <FormControlLabel
+            value='sophomore'
+            control={<Radio color='primary' />}
+            label='Sophomore'
+          />
+          <FormControlLabel
+            value='Junior'
+            control={<Radio color='primary' />}
+            label='Junior'
+          />
+          <FormControlLabel
+            value='Senior'
+            control={<Radio color='primary' />}
+            label='Senior'
+          />
+        </RadioGroup>
+      </FormControl>
+      <FormControl component='fieldset' classes={{ root: classes.formControl }}>
+        <FormLabel component='legend' classes={{ root: classes.formLabel }}>
           Age
         </FormLabel>
         <Select
@@ -104,20 +136,44 @@ export default function RadioButtonsGroup({ value, onChange, child }) {
         classes={{ root: classes.formControlText }}
       >
         <FormLabel component='legend' classes={{ root: classes.formLabel }}>
-          Hostel
+          Dorm
         </FormLabel>
         <Autocomplete
           classes={{ root: classes.autoComplete }}
           autoComplete
           options={options.sort((a, b) => (a.name.attr > b.name.attr ? 1 : -1))}
-          groupBy={option => option.affiliation}
+          groupBy={option => option.neighborhood}
           getOptionLabel={option => option.name}
           renderInput={params => (
-            <TextField {...params} label={value.hostel} variant='outlined' />
+            <TextField {...params} label={value.dorm} variant='outlined' />
           )}
           onChange={(event, text) => {
             if (text) {
-              const obj = { target: { name: 'hostel', value: text.name } };
+              const obj = { target: { name: 'dorm', value: text.name } };
+              onChange(obj);
+            }
+          }}
+        />
+      </FormControl>
+      <FormControl
+        component='fieldset'
+        classes={{ root: classes.formControlText }}
+      >
+        <FormLabel component='legend' classes={{ root: classes.formLabel }}>
+          Major
+        </FormLabel>
+        <Autocomplete
+          classes={{ root: classes.autoComplete }}
+          autoComplete
+          options={majors.sort((a, b) => (a.name.attr > b.name.attr ? 1 : -1))}
+          groupBy={option => option.college}
+          getOptionLabel={option => option.name}
+          renderInput={params => (
+            <TextField {...params} label={value.major} variant='outlined' />
+          )}
+          onChange={(event, text) => {
+            if (text) {
+              const obj = { target: { name: 'major', value: text.name } };
               onChange(obj);
             }
           }}

@@ -30,7 +30,7 @@ passport.use(
       const userInfo = extractAzureProfile(profile);
 
       return User.findOrCreate({
-        where: { sid: userInfo.sid },
+        where: { email: userInfo.email },
         defaults: { ...userInfo, isComplete: false }
       }).then(([user]) => {
         done(null, user);

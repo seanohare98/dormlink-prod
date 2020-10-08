@@ -6,7 +6,7 @@ import RegistrationPage from '../pages/RegistrationPage';
 
 const PrivateRoute = ({ component, alternate, ...rest }) => {
   const [user, setUser] = useContext(UserContext);
-  const destination = user.sid && true ? component : LandingPage;
+  const destination = user.email && true ? component : LandingPage;
   return <Route {...rest} component={destination} />;
 };
 

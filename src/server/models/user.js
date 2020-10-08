@@ -2,8 +2,8 @@ module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     'user',
     {
-      sid: {
-        type: DataTypes.INTEGER,
+      email: {
+        type: DataTypes.STRING,
         primaryKey: true,
         autoIncrement: false
       },
@@ -15,19 +15,27 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
-      email: {
+      age: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+      },
+      gender: {
+        type: DataTypes.ENUM('male', 'female'),
+        allowNull: true
+      },
+      classStanding: {
+        type: DataTypes.ENUM('freshman', 'sophomore', 'junior', 'senior'),
+        allowNull: true
+      },
+      major: {
         type: DataTypes.STRING,
         allowNull: true
       },
-      schedule: {
+      sleepStart: {
         type: DataTypes.INTEGER,
         allowNull: true
       },
-      studious: {
-        type: DataTypes.INTEGER,
-        allowNull: true
-      },
-      participation: {
+      sleepEnd: {
         type: DataTypes.INTEGER,
         allowNull: true
       },
@@ -41,12 +49,14 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     {
-      freezeTableName: true
+      freezeTableName: true,
+      timestamps: false
     }
   );
 
   User.associate = models => {
-    User.belongsTo(models.hostel);
+    User.belongsTo(models.dorm);
+    User.belongsToMany(models.hobby, { through: 'user_hobbies' });
   };
 
   return User;

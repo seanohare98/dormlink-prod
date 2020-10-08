@@ -2,40 +2,53 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   type User {
-    sid: ID!
+    email: ID!
     firstName: String!
     lastName: String!
-    email: String
-    schedule: Int
+    age: Int
+    gender: String
+    classStanding: String
+    major: String
+    sleepStart: Int
+    sleepEnd: Int
     cleanliness: Int
-    participation: Int
-    studious: Int
-    hostel: Hostel
     isComplete: Boolean!
+    dorm: Dorm
+    hobbies: [Hobby]
   }
-  type Hostel {
-    id: ID!
-    affiliation: String
+  type Dorm {
+    name: ID!
+    neighborhood: String
+    users: [User]
+  }
+  type Hobby {
+    name: ID!
     users: [User]
   }
   type Query {
     user: User
-    userSid(sid: ID!): User
-    usersHostel: [User]
+    userEmail(email: ID!): User
+    userDorm: [User]
     users: [User!]!
-    hostel(id: ID!): Hostel
-    hostels: [Hostel!]!
+    dormName(name: ID!): Dorm
+    dorms: [Dorm!]!
+    hobbies: [Hobby!]!
   }
   type Mutation {
+    addUserHobby(hobby: ID!): Int
+    removeUserHobby(hobby: ID!): Int
     updateUser(
-      sid: ID!
-      hostel: ID
-      schedule: Int
+      email: ID!
+      dorm: ID
+      age: Int
+      gender: String
+      classStanding: String
+      major: String
+      sleepStart: Int
+      sleepEnd: Int
       cleanliness: Int
-      participation: Int
-      studious: Int
     ): Int
-    deleteUser(sid: ID!): Int
+    deleteUser(email: ID!): Int
   }
 `;
 

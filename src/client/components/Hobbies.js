@@ -4,6 +4,9 @@ import Container from '@material-ui/core/Container';
 import Slider from '@material-ui/core/Slider';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const InfoContainer = withStyles({
   root: {
@@ -37,7 +40,7 @@ const useStyles = makeStyles(theme => ({
 const levels = [
   {
     value: 0,
-    label: 'No Way'
+    label: "I Don't Care"
   },
   {
     value: 25,
@@ -45,7 +48,7 @@ const levels = [
   },
   {
     value: 50,
-    label: 'Sometimes'
+    label: 'Somewhat'
   },
   {
     value: 75,
@@ -53,7 +56,34 @@ const levels = [
   },
   {
     value: 100,
-    label: 'Definitely'
+    label: "I'm a neat freak"
+  }
+];
+
+const times = [
+  {
+    value: 0,
+    label: '8:00 PM'
+  },
+  {
+    value: 20,
+    label: '10:00 PM'
+  },
+  {
+    value: 40,
+    label: 'Midnight'
+  },
+  {
+    value: 60,
+    label: '2:00 AM'
+  },
+  {
+    value: 80,
+    label: '4:00 AM'
+  },
+  {
+    value: 100,
+    label: '6:00 AM'
   }
 ];
 
@@ -68,24 +98,7 @@ export default function RadioButtonsGroup({ value, onChange }) {
     <InfoContainer maxWidth='xl'>
       <FormControl component='fieldset' classes={{ root: classes.formControl }}>
         <FormLabel component='legend' classes={{ root: classes.formLabel }}>
-          A Night Owl?
-        </FormLabel>
-        <Slider
-          defaultValue={value.schedule}
-          onChangeCommitted={(event, num) => {
-            const obj = { target: { name: 'schedule', value: num } };
-            onChange(obj);
-          }}
-          getAriaValueText={valuetext}
-          aria-labelledby='discrete-slider-custom'
-          step={25}
-          valueLabelDisplay='off'
-          marks={levels}
-        />
-      </FormControl>
-      <FormControl component='fieldset' classes={{ root: classes.formControl }}>
-        <FormLabel component='legend' classes={{ root: classes.formLabel }}>
-          A Neat Freak?
+          How much does cleanliness matter to you?
         </FormLabel>
         <Slider
           defaultValue={value.cleanliness}
@@ -101,37 +114,39 @@ export default function RadioButtonsGroup({ value, onChange }) {
       </FormControl>
       <FormControl component='fieldset' classes={{ root: classes.formControl }}>
         <FormLabel component='legend' classes={{ root: classes.formLabel }}>
-          An Active Community Member?
+          What time range do you usually sleep?
         </FormLabel>
         <Slider
-          defaultValue={value.participation}
+          defaultValue={value.sleep}
           onChangeCommitted={(event, num) => {
-            const obj = { target: { name: 'participation', value: num } };
+            const obj = { target: { name: 'sleep', value: num } };
             onChange(obj);
           }}
           getAriaValueText={valuetext}
-          aria-labelledby='discrete-slider-custom'
-          step={25}
           valueLabelDisplay='off'
-          marks={levels}
+          aria-labelledby='range-slider'
+          step={10}
+          marks={times}
         />
       </FormControl>
       <FormControl component='fieldset' classes={{ root: classes.formControl }}>
         <FormLabel component='legend' classes={{ root: classes.formLabel }}>
-          A Hard-Working Student?
+          What are your hobbies?
         </FormLabel>
-        <Slider
-          defaultValue={value.studious}
-          onChangeCommitted={(event, num) => {
-            const obj = { target: { name: 'studious', value: num } };
-            onChange(obj);
-          }}
-          getAriaValueText={valuetext}
-          aria-labelledby='discrete-slider-custom'
-          step={25}
-          valueLabelDisplay='off'
-          marks={levels}
-        />
+        <FormGroup name='hobbies' value={value} onChange={onChange} row>
+          <FormControlLabel
+            value='end'
+            control={<Checkbox color='primary' />}
+            label='End'
+            labelPlacement='end'
+          />
+          <FormControlLabel
+            value='end'
+            control={<Checkbox color='primary' />}
+            label='End'
+            labelPlacement='end'
+          />
+        </FormGroup>
       </FormControl>
     </InfoContainer>
   );

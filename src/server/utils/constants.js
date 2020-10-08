@@ -1,127 +1,125 @@
-exports.traits = ['cleanliness', 'participation', 'schedule', 'studious'];
-exports.students = [
+exports.dorms = [
   {
-    hostel: 'PMHC High Block',
-    sid: '1155116400',
-    first: 'john',
-    email: 'annie@link.cuhk.edu.hk',
-
-    last: 'doe',
-    age: 21,
-    gender: 'male',
-    schedule: 50,
-    studious: 50,
-    cleanliness: 50,
-    participation: 50
+    name: 'Armstrong',
+    neighborhood: 'Brody'
   },
   {
-    hostel: 'PMHC High Block',
-    sid: '1155116500',
-    first: 'jane',
-    last: 'doe',
-    age: 21,
-    email: 'janedoe@link.cuhk.edu.hk',
-    gender: 'female',
-    schedule: 100,
-    studious: 50,
-    cleanliness: 50,
-    participation: 25
+    name: 'Bailey',
+    neighborhood: 'Brody'
   },
   {
-    hostel: 'PMHC High Block',
-    sid: '1155116700',
-    first: 'annie',
-    last: 'price',
-    email: 'annieprice@link.cuhk.edu.hk',
-    age: 18,
-    gender: 'male',
-    schedule: 25,
-    studious: 25,
-    cleanliness: 100,
-    participation: 50
+    name: 'Bryan',
+    neighborhood: 'Brody'
   },
   {
-    hostel: 'PMHC High Block',
-    sid: '1155116800',
-    first: 'jackson',
-    last: 'smith',
-    age: 19,
-    email: 'jacksonsmith@link.cuhk.edu.hk',
-    gender: 'male',
-    schedule: 50,
-    studious: 50,
-    cleanliness: 50,
-    participation: 50
+    name: 'Butterfield',
+    neighborhood: 'Brody'
   },
   {
-    hostel: 'PMHC High Block',
-    sid: '1155116900',
-    first: 'jacob',
-    last: 'barkley',
-    age: 22,
-    email: 'jacobbarkley@link.cuhk.edu.hk',
-    gender: 'male',
-    schedule: 100,
-    studious: 50,
-    cleanliness: 75,
-    participation: 50
+    name: 'Emmons',
+    neighborhood: 'Brody'
   },
   {
-    hostel: 'PMHC Low Block',
-    sid: '99999999',
-    first: 'mike',
-    last: 'james',
-    age: 22,
-    email: 'mikejames@link.cuhk.edu.hk',
-
-    gender: 'male',
-    schedule: 100,
-    studious: 50,
-    cleanliness: 75,
-    participation: 50
+    name: 'Rather',
+    neighborhood: 'Brody'
+  },
+  {
+    name: 'Campbell',
+    neighborhood: 'North'
+  },
+  {
+    name: 'Landon',
+    neighborhood: 'North'
+  },
+  {
+    name: 'Mason/Abbot',
+    neighborhood: 'North'
+  },
+  {
+    name: 'Mayo',
+    neighborhood: 'North'
+  },
+  {
+    name: 'Snyder/Phillips',
+    neighborhood: 'North'
+  },
+  {
+    name: 'Williams',
+    neighborhood: 'North'
+  },
+  {
+    name: 'Yakeley/Gilchrist',
+    neighborhood: 'North'
+  },
+  {
+    name: 'Akers',
+    neighborhood: 'East'
+  },
+  {
+    name: 'Holmes',
+    neighborhood: 'East'
+  },
+  {
+    name: 'Hubbard',
+    neighborhood: 'East'
+  },
+  {
+    name: 'McDonel',
+    neighborhood: 'River Trail'
+  },
+  {
+    name: 'Owen',
+    neighborhood: 'River Trail'
+  },
+  {
+    name: 'Van Hoosen',
+    neighborhood: 'River Trail'
+  },
+  {
+    name: 'Case',
+    neighborhood: 'South'
+  },
+  {
+    name: 'Holden',
+    neighborhood: 'South'
+  },
+  {
+    name: 'Wilson',
+    neighborhood: 'South'
+  },
+  {
+    name: 'Wonders',
+    neighborhood: 'South'
   }
 ];
-exports.hostelInfo = [
-  // CC
-  { name: 'PMHC High Block', affiliation: 'Chung Chi' },
-  { name: 'PMHC Low Block', affiliation: 'Chung Chi' },
-  { name: 'Madam SH Ho Hall', affiliation: 'Chung Chi' },
-  { name: 'Hua Lien Tang', affiliation: 'Chung Chi' },
-  { name: 'Lee Shu Pui Hall', affiliation: 'Chung Chi' },
-  { name: 'Ming Hua Tang', affiliation: 'Chung Chi' },
-  { name: 'Theology Building', affiliation: 'Chung Chi' },
-  { name: 'Wen Chih Tang', affiliation: 'Chung Chi' },
-  { name: 'Wen Lin Tang', affiliation: 'Chung Chi' },
-  { name: 'Ying Lin Tang', affiliation: 'Chung Chi' },
 
-  // NA
-  { name: 'Daisy Li Hall', affiliation: 'New Asia' },
-  { name: 'Chih Hsing Hall', affiliation: 'New Asia' },
-  { name: 'Xuesi Hall', affiliation: 'New Asia' },
-  { name: 'Grace Tien Hall', affiliation: 'New Asia' },
-
-  // UC
-  { name: 'Adam Schall Residence', affiliation: 'United College' },
-  { name: 'Bethlehem Hall', affiliation: 'United College' },
-  { name: 'Chan Chun Ha Hostel', affiliation: 'United College' },
-  { name: 'Hang Seng Hall', affiliation: 'United College' },
-
-  // SC
-  { name: 'Kuo Mou Hall', affiliation: 'Shaw College' },
-  { name: 'Student Hostel II (Yat Sen Hall)', affiliation: 'Shaw College' },
-
-  // MC
-  { name: 'Morningside Hostel', affiliation: 'Morningside College' },
-
-  // SH
-  { name: 'S.H. Ho Student Hostel', affiliation: 'S.H. Ho College' },
-
-  // CW
-  { name: 'C.W.Chu Student Hostel', affiliation: 'C.W.Chu Colledge' },
-
-  // YS
-  { name: 'Wu Yee Sun Student Hostel', affiliation: 'Wu Yee Sun College' },
-
-  // WS
-  { name: 'Lee Woo Sing Student Hostel', affiliation: 'Lee Woo Sing College' }
+exports.students = [
+  {
+    dorm: 'Case',
+    email: 'gibbskay@msu.edu',
+    first: 'kayla',
+    last: 'gibbs',
+    age: 21,
+    gender: 'female',
+    classStanding: 'sophomore',
+    sleepStart: 5,
+    sleepEnd: 8,
+    major: 'mechanical engineering',
+    cleanliness: 50
+  },
+  {
+    dorm: 'Rather',
+    classStanding: 'freshman',
+    email: 'stevey@msu.edu',
+    first: 'steve',
+    last: 'antonelli',
+    age: 20,
+    gender: 'male',
+    sleepStart: 5,
+    sleepEnd: 6,
+    major: 'film studies',
+    cleanliness: 60
+  }
 ];
+
+exports.hobbies = [{ name: 'basketball' }, { name: 'baseball' }];

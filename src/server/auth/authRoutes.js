@@ -2,7 +2,6 @@ const router = require('express').Router();
 const passport = require('passport');
 const { isAuthenticated } = require('../utils/common');
 const User = require('../models').user;
-const driver = require('../utils/neo4jDriver');
 
 router.get(
   '/azure',
@@ -31,8 +30,7 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/user', isAuthenticated, async (req, res) => {
-  const user = await User.findAll({ where: { sid: req.user.sid } });
-  user[0].dataValues.sid = user[0].dataValues.sid.toString();
+  const user = await User.findAll({ where: { email: req.user.email } });
   req.user = user[0].dataValues;
   res.json(req.user);
 });

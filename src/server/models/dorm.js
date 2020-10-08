@@ -1,25 +1,26 @@
 module.exports = (sequelize, DataTypes) => {
-  const Hostel = sequelize.define(
-    'hostel',
+  const Dorm = sequelize.define(
+    'dorm',
     {
-      id: {
+      name: {
         type: DataTypes.STRING,
         primaryKey: true,
         autoIncrement: false
       },
-      affiliation: {
+      neighborhood: {
         type: DataTypes.STRING,
         allowNull: false
       }
     },
     {
-      freezeTableName: true
+      freezeTableName: true,
+      timestamps: false
     }
   );
 
-  Hostel.associate = models => {
-    Hostel.hasMany(models.user);
+  Dorm.associate = models => {
+    Dorm.hasMany(models.user);
   };
 
-  return Hostel;
+  return Dorm;
 };

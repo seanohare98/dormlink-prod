@@ -8,11 +8,15 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
 require('./auth/passportConfig');
-const { createHostels, createUsers } = require('./utils/dataConfig');
-const { hostelInfo, students } = require('./utils/constants');
-const driver = require('./utils/neo4jDriver');
+const {
+  createDorms,
+  createUsers,
+  createHobbies
+} = require('./utils/dataConfig');
+const { dorms, students, hobbies } = require('./utils/constants');
 const db = require('./models');
-const mergedSchema = require('./data/mergedSchema');
+const typeDefs = require('./data/typeDefs');
+const resolvers = require('./data/resolvers');
 const authRoutes = require('./auth/authRoutes');
 const { isAuthenticated } = require('./utils/common');
 
@@ -31,22 +35,24 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(cookieParser());
 
-/* inject express.request, db, and driver into graphql context */
+/* inject express.request and sequelize.db into graphql context */
 const server = new ApolloServer({
-  schema: mergedSchema,
+  typeDefs,
+  resolvers,
   context: ({ req }) => {
-    return { db, driver, req };
+    return { db, req };
   }
 });
 
-/* clean and fill database */
+/* clean and sync database */
 db.sequelize.authenticate().then(() => {
   db.sequelize
     .sync({
       force: true
     })
     .then(() => {
-      createHostels(hostelInfo);
+      createDorms(dorms);
+      createHobbies(hobbies);
       createUsers(students);
     });
 });
@@ -58,7 +64,7 @@ app.use(express.static(DIST_PATH));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/auth', authRoutes);
-app.use('/graphql', isAuthenticated);
+// app.use('/graphql', isAuthenticated);
 server.applyMiddleware({ app });
 app.get('*', (req, res) => res.sendFile(HTML_FILE));
 app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
