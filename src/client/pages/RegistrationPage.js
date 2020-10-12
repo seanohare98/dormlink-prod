@@ -10,7 +10,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { makeStyles } from '@material-ui/core/styles';
 import useFormFields from '../hooks/useFormFields';
 import { UserContext } from '../contexts/UserProvider';
-import { UPDATE_USER } from '../utils/gqlQueries';
+import { UPDATE_USER, ADD_USER_HOBBY } from '../utils/gqlQueries';
 import BasicInfo from '../components/BasicInfo';
 import Preferences from '../components/Hobbies';
 
@@ -65,6 +65,7 @@ export default function RegistrationPage(props) {
   const classes = useStyles();
   const steps = getSteps();
   const [UpdateUser] = useMutation(UPDATE_USER);
+  const [UpdateUserHobby] = useMutation(ADD_USER_HOBBY);
   const [user, setUser] = useContext(UserContext);
   const [missingField, setMissingField] = React.useState(false);
   const [activeStep, setActiveStep] = React.useState(0);
@@ -91,11 +92,24 @@ export default function RegistrationPage(props) {
         dorm: fieldsFilled.dorm,
         age: fieldsFilled.age,
         classStanding: fieldsFilled.classStanding,
+        sleepStart: fieldsFilled.sleep[0],
+        sleepEnd: fieldsFilled.sleep[1],
+        cleanliness: fieldsFilled.cleanliness,
         major: fieldsFilled.major
       }
-    }).then(async () => {
-      setRedirect(true);
-    });
+    })
+      .then(() => {
+        fieldsFilled.hobbies.forEach(hobbyName => {
+          UpdateUserHobby({
+            variables: {
+              hobby: hobbyName
+            }
+          });
+        });
+      })
+      .then(async () => {
+        setRedirect(true);
+      });
   };
 
   if (redirect === true) {

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
-import ProfileData from '../components/SimilarUserCards';
-import { UserContext } from '../contexts/UserProvider';
 import Redirect from 'react-router-dom/es/Redirect';
+import { UserContext } from '../contexts/UserProvider';
 
 const Profile = () => {
   const [user, setUser] = useContext(UserContext);
@@ -9,11 +8,7 @@ const Profile = () => {
   if (user.update) return <div>loading</div>;
   if (!user.isComplete) return <Redirect to='/register' />;
 
-  return (
-    <div>
-      <ProfileData />
-    </div>
-  );
+  return <div>{user.email}</div>;
 };
 
 export default Profile;

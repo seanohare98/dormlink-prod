@@ -94,16 +94,13 @@ exports.dorms = [
 ];
 
 exports.hobbies = [
-  { name: 'basketball' },
-  { name: 'baseball' },
-  { name: 'soccer' },
-  { name: 'guitar' },
-  { name: 'video games' },
-  { name: 'guitar' },
-  { name: 'guitar' },
-  { name: 'guitar' },
-  { name: 'guitar' },
-  { name: 'guitar' }
+  { value: 'basketball', label: 'Basketball' },
+  { value: 'baseball', label: 'Baseball' },
+  { value: 'soccer', label: 'Soccer' },
+  { value: 'football', label: 'Football' },
+  { value: 'running', label: 'Running' },
+  { value: 'guitar', label: 'Guitar' },
+  { value: 'piano', label: 'Piano' }
 ];
 
 exports.majors = [

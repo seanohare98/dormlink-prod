@@ -4,9 +4,8 @@ import Container from '@material-ui/core/Container';
 import Slider from '@material-ui/core/Slider';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Select from 'react-select';
+import { hobbies } from '../utils/constants';
 
 const InfoContainer = withStyles({
   root: {
@@ -33,9 +32,17 @@ const useStyles = makeStyles(theme => ({
     color: '#000',
     '&.Mui-focused': {
       color: '#000'
-    }
+    },
+    marginBottom: '10px'
   }
 }));
+
+const customSelectStyles = {
+  option: (provided, state) => ({
+    ...provided,
+    color: state.isSelected ? 'red' : 'green'
+  })
+};
 
 const levels = [
   {
@@ -133,20 +140,30 @@ export default function RadioButtonsGroup({ value, onChange }) {
         <FormLabel component='legend' classes={{ root: classes.formLabel }}>
           What are your hobbies?
         </FormLabel>
-        <FormGroup name='hobbies' value={value} onChange={onChange} row>
-          <FormControlLabel
-            value='end'
-            control={<Checkbox color='primary' />}
-            label='End'
-            labelPlacement='end'
-          />
-          <FormControlLabel
-            value='end'
-            control={<Checkbox color='primary' />}
-            label='End'
-            labelPlacement='end'
-          />
-        </FormGroup>
+        <Select
+          defaultValue={value.hobbies}
+          isMulti
+          styles={customSelectStyles}
+          name='hobbies'
+          options={hobbies}
+          className='basic-multi-select'
+          classNamePrefix='select'
+          onChange={(event, num) => {
+            if (num.action === 'select-option') {
+              const hobbyArr = value.hobbies.slice();
+              hobbyArr.push(num.option.value);
+              const obj = { target: { name: 'hobbies', value: hobbyArr } };
+              onChange(obj);
+            }
+            if (num.action === 'remove-value') {
+              const hobbyArr = value.hobbies.slice();
+              const index = hobbyArr.indexOf(num.removedValue.value);
+              hobbyArr.splice(index, 1);
+              const obj = { target: { name: 'hobbies', value: hobbyArr } };
+              onChange(obj);
+            }
+          }}
+        />
       </FormControl>
     </InfoContainer>
   );

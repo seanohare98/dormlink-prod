@@ -122,4 +122,12 @@ exports.students = [
   }
 ];
 
-exports.hobbies = [{ name: 'basketball' }, { name: 'baseball' }];
+exports.hobbies = [
+  { name: 'basketball' },
+  { name: 'baseball' },
+  { name: 'soccer' },
+  { name: 'football' },
+  { name: 'running' },
+  { name: 'guitar' },
+  { name: 'piano' }
+];
