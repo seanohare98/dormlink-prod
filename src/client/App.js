@@ -4,7 +4,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { Home } from '@material-ui/icons';
 import history from './utils/history';
 import { UserContext } from './contexts/UserProvider';
-import { PrivateRoute, CompleteRoute } from './utils/PrivateRoute';
+import { PrivateRoute } from './utils/PrivateRoute';
 import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
 import RegistrationPage from './pages/RegistrationPage';
@@ -25,7 +25,7 @@ export default function App() {
         <PrivateRoute exact path='/register' component={RegistrationPage} />
         <PrivateRoute exact path='/profile' component={ProfilePage} />
         <PrivateRoute exact path='/' component={HomePage} />
-        <Route exact path='/user/:sid' component={UserPage} />
+        <Route exact path='/user/:email' component={UserPage} />
         <Route
           exact
           path='/error'

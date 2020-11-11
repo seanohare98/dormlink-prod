@@ -2,6 +2,7 @@ const router = require('express').Router();
 const passport = require('passport');
 const { isAuthenticated } = require('../utils/common');
 const User = require('../models').user;
+const Hobby = require('../models').hobby;
 
 router.get(
   '/azure',
@@ -30,8 +31,20 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/user', isAuthenticated, async (req, res) => {
-  const user = await User.findAll({ where: { email: req.user.email } });
-  req.user = user[0].dataValues;
+  const userWithHobbies = await User.findAll({
+    where: { email: req.user.email },
+    include: [
+      {
+        model: Hobby,
+        attributes: ['name'],
+        through: {
+          attributes: [] // this helps removing the join table in returned data
+        }
+      }
+    ]
+  });
+  req.user = userWithHobbies[0].dataValues;
+  req.user.hobbies = req.user.hobbies.map(({ dataValues }) => dataValues.name);
   res.json(req.user);
 });
 

@@ -8,7 +8,7 @@ const Profile = () => {
   if (user.update) return <div>loading</div>;
   if (!user.isComplete) return <Redirect to='/register' />;
 
-  return <div>{user.email}</div>;
+  return <div>homepage for {user.email}</div>;
 };
 
 export default Profile;

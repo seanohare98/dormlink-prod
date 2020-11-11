@@ -1,13 +1,10 @@
 import { gql } from 'apollo-boost';
 
-const USER = gql`
-  query User($email: ID!) {
-    User(email: $email) {
-      age
-      gender
-      dorm {
+const USER_HOBBIES = gql`
+  query User {
+    user {
+      hobbies {
         name
-        neighborhood
       }
     }
   }
@@ -16,6 +13,12 @@ const USER = gql`
 const ADD_USER_HOBBY = gql`
   mutation addUserHobby($hobby: ID!) {
     addUserHobby(hobby: $hobby)
+  }
+`;
+
+const REMOVE_USER_HOBBY = gql`
+  mutation removeUserHobby($hobby: ID!) {
+    removeUserHobby(hobby: $hobby)
   }
 `;
 
@@ -51,4 +54,10 @@ const DELETE_USER = gql`
   }
 `;
 
-export { USER, ADD_USER_HOBBY, UPDATE_USER, DELETE_USER };
+export {
+  USER_HOBBIES,
+  ADD_USER_HOBBY,
+  REMOVE_USER_HOBBY,
+  UPDATE_USER,
+  DELETE_USER
+};

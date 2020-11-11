@@ -98,9 +98,9 @@ function valuetext(value) {
   return `${value}`;
 }
 
-export default function RadioButtonsGroup({ value, onChange }) {
+export default function RadioButtonsGroup({ value, onChange, child }) {
   const classes = useStyles();
-
+  console.log(value.hobbies);
   return (
     <InfoContainer maxWidth='xl'>
       <FormControl component='fieldset' classes={{ root: classes.formControl }}>
@@ -165,6 +165,7 @@ export default function RadioButtonsGroup({ value, onChange }) {
           }}
         />
       </FormControl>
+      {child}
     </InfoContainer>
   );
 }

@@ -6,7 +6,7 @@ const useUser = () => React.useContext(UserContext);
 
 const UserProvider = props => {
   const [state, setState] = useState({ loading: true });
-  console.log(state);
+  console.log('UserState:', state);
   useEffect(() => {
     fetch('/auth/user')
       .then(res => res.json())

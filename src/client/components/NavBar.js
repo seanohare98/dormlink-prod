@@ -191,7 +191,7 @@ export default function NavBar() {
                 </Link>
               </IconButton>
             )}
-            {user.sid && (
+            {user.email && (
               <MenuItem>
                 <Button href='/auth/logout'>Logout</Button>
               </MenuItem>

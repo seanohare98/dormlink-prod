@@ -91,6 +91,7 @@ export default function RegistrationPage(props) {
         email: user.email,
         dorm: fieldsFilled.dorm,
         age: fieldsFilled.age,
+        gender: fieldsFilled.gender,
         classStanding: fieldsFilled.classStanding,
         sleepStart: fieldsFilled.sleep[0],
         sleepEnd: fieldsFilled.sleep[1],
