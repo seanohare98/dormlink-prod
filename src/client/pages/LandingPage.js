@@ -24,7 +24,7 @@ const LandingPage = () => {
         <div id='inner'>
           <img src={Logo} alt='dormlink-logo img' id='logo' />
           <h1 className='landing-header'>Find Your Roommate!</h1>
-          <p className='subtitle'>This shit looks like ass loll</p>
+          <p className='subtitle'>Coming Soon!</p>
           <LoginButton />
         </div>
         <div id='illustration'>
