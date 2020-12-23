@@ -1,7 +1,7 @@
 # DormLink
 
 ## Installation
-
+- This guide assumes you have a basic competence with a command line tool like Terminal. If you need to learn more, click [here](https://www.davidbaumgold.com/tutorials/command-line/).
 - Retrieve `.env` from our WhatsApp or Discord group. I'll frequently update it on those platforms, but prefer to keep it off GitHub since it contains sensitive group data.
 
 ##### Project Code
