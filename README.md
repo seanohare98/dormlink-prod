@@ -1,8 +1,9 @@
 # DormLink
 
 ## Installation
+
 - This guide assumes you have a basic competence with a command line tool like Terminal. If you need to learn more, click [here](https://www.davidbaumgold.com/tutorials/command-line/).
-- Retrieve `.env` from our WhatsApp or Discord group. I'll frequently update it on those platforms, but prefer to keep it off GitHub since it contains sensitive group data.
+- Create `.env`
 
 ##### Project Code
 
@@ -15,7 +16,7 @@
 - [Create a MySQL user and database](https://dev.mysql.com/doc/mysql-getting-started/en/).
 - Fill out associated credentials in `.env`.
 
-##### Neo4j Graph Platform
+##### <del>Neo4j Graph Platform</del> (Deprecated)
 
 - Install [Neo4j](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781783287253/1/ch01lvl1sec12/single-node-installation-of-neo4j-over-mac-os-x).
 - Download [Neo4j Desktop](https://neo4j.com/download-center/#desktop).
@@ -40,15 +41,12 @@
 #### Remember:
 
 - [Integrate prettier w/ your code editor](https://prettier.io/docs/en/editors.html).
-- We should use a [feature branch workflow](https://bocoup.com/blog/git-workflow-walkthrough-feature-branches).
-- Have `.env` in the **_root_** directory!
-- Monitor the Webpack and nodemon output and logs if you encounter an issue.
+- [Feature branch workflow](https://bocoup.com/blog/git-workflow-walkthrough-feature-branches).
+- Have `.env` in the **_root_** directory
 
 ---
 
-## References:
-
-#### Learning:
+## Some References:
 
 - [React](https://reactjs.org/docs/getting-started.html)
 - [React Router Training](https://reacttraining.com/react-router/web/guides/quick-start)
@@ -60,8 +58,5 @@
 - [Express](https://expressjs.com/en/starter/installing.html)
 - [Webpack](https://webpack.js.org/concepts/)
 - [Airbnb Style Guide](https://github.com/airbnb/javascript)
-
-#### Research:
-
 - [K-Nearest-Neighbor Neo4j Implementation Examples](https://neo4j.com/docs/graph-algorithms/current/labs-algorithms/approximate-nearest-neighbors/)
 - [GraphQL Auth](https://github.com/apollographql/graphql-tools/issues/313)
